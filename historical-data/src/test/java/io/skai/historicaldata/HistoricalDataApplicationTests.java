@@ -1,4 +1,4 @@
-package io.skai;
+package io.skai.historicaldata;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
