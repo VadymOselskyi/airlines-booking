@@ -1,6 +1,29 @@
-
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation libs.springBoot
+    implementation libs.devTools
+    implementation libs.jpa
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+    implementation libs.openApi
+    implementation libs.mysql
+    implementation libs.springBootValidation
+    implementation libs.liquibase
+    implementation libs.jooq
+    implementation libs.jooqCodegen
+    implementation libs.feign
+    testImplementation libsTest.springTest
 }
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath libs.jooqCodegen
+        classpath libs.mysql
+    }
+}
+
+//apply from: "$rootProject.projectDir/jooq.gradle"
 

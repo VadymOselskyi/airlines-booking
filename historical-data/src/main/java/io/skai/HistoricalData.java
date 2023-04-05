@@ -1,6 +1,6 @@
 package io.skai;
 
-public class Main {
+public class HistoricalData {
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
