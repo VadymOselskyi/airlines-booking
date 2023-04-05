@@ -25,5 +25,5 @@ buildscript {
     }
 }
 
-//apply from: "$rootProject.projectDir/jooq.gradle"
+apply from: "$rootProject.projectDir/jooq.gradle"
 
