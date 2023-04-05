@@ -43,5 +43,5 @@ task generate {
                             .withDaos(false))
                     .withTarget(new Target()
                             .withDirectory(outputDirectory)
-                            .withPackageName('com.example.reservation.jooq'))))
+                            .withPackageName('io.skai.reservation.jooq'))))
 }
