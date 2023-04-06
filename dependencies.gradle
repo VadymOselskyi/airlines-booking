@@ -10,7 +10,9 @@ ext.libs = [
         'jooqCodegen'         : 'org.jooq:jooq-codegen:3.17.10',
         'devTools'            : 'org.springframework.boot:spring-boot-devtools:3.0.5',
         'dataJdbc'            : 'org.springframework.data:spring-data-jdbc:3.0.4',
-        'feign'               : 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1'
+        'feign'               : 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1',
+        'mapstruct'           : 'org.mapstruct:mapstruct:1.5.3.Final',
+        'mapstructProcessor'  : 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 ]
 
 ext.libsTest = [

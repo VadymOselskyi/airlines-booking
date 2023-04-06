@@ -11,6 +11,8 @@ dependencies {
     implementation libs.jooq
     implementation libs.jooqCodegen
     implementation libs.feign
+    implementation libs.mapstruct
+    annotationProcessor libs.mapstructProcessor
     testImplementation libsTest.springTest
 }
 buildscript {
