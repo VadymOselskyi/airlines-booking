@@ -4,7 +4,7 @@ import io.skai.reservation.dto.PassengerDto;
 import io.skai.reservation.jooq.tables.pojos.Passenger;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PassengerMapper {
 
     Passenger passengerDtoTOPassenger(PassengerDto dto);
