@@ -1,8 +1,8 @@
 package io.skai.reservation.service;
 
-import io.skai.reservation.model.PassengerModel;
+import io.skai.reservation.dto.PassengerDto;
 
 public interface PassengerService {
-    PassengerModel create(PassengerModel passenger);
-    PassengerModel getPassengerByEmail(String email);
+    PassengerDto create(PassengerDto passenger);
+    PassengerDto getPassengerByEmail(String email);
 }

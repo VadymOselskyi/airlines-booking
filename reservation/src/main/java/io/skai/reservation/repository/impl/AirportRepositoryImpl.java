@@ -1,8 +1,7 @@
 package io.skai.reservation.repository.impl;
 
-
 import io.skai.reservation.jooq.Tables;
-import io.skai.reservation.model.AirportModel;
+import io.skai.reservation.jooq.tables.pojos.Airport;
 import io.skai.reservation.repository.AirportRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,20 +16,20 @@ import java.util.List;
 public class AirportRepositoryImpl implements AirportRepository {
     private final DSLContext dslContext;
 
-    public AirportModel insert(AirportModel airport) {
+    public Airport insert(Airport airport) {
         return dslContext.insertInto(Tables.AIRPORT, Tables.AIRPORT.NAME, Tables.AIRPORT.COUNTRY_CODE, Tables.AIRPORT.CITY)
                 .values(airport.getName(), airport.getCountryCode(), airport.getCity())
                 .returning()
-                .fetchOneInto(AirportModel.class);
+                .fetchOneInto(Airport.class);
     }
 
-    public List<AirportModel> selectAll() {
+    public List<Airport> selectAll() {
         return dslContext.selectFrom(Tables.AIRPORT)
-                .fetchInto(AirportModel.class);
+                .fetchInto(Airport.class);
     }
-    public AirportModel selectOneById(Long id) {
+    public Airport selectOneById(Long id) {
         return dslContext.selectFrom(Tables.AIRPORT)
                 .where(Tables.AIRPORT.ID.eq(id))
-                .fetchOneInto(AirportModel.class);
+                .fetchOneInto(Airport.class);
     }
 }

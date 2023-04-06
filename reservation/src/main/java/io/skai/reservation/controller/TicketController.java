@@ -1,8 +1,8 @@
 package io.skai.reservation.controller;
 
 import io.skai.reservation.consumer.TicketClient;
-import io.skai.reservation.model.PassengerModel;
-import io.skai.reservation.model.TicketModel;
+import io.skai.reservation.dto.PassengerDto;
+import io.skai.reservation.dto.TicketDto;
 import io.skai.reservation.service.PassengerService;
 import io.skai.reservation.service.TicketService;
 import lombok.RequiredArgsConstructor;
@@ -21,20 +21,20 @@ public class TicketController {
     private final TicketClient consumer;
 
     @PostMapping("/new")
-    public ResponseEntity<TicketModel> save(@RequestBody TicketModel ticket) {
+    public ResponseEntity<TicketDto> save(@RequestBody TicketDto ticket) {
 
         return ResponseEntity.ok(ticketService.create(ticket));
     }
 
     @GetMapping
-    public ResponseEntity<List<TicketModel>> getAll() {
+    public ResponseEntity<List<TicketDto>> getAll() {
         return ResponseEntity.ok(ticketService.getAllTickets());
     }
 
     @GetMapping("/history")
-    public ResponseEntity<List<TicketModel>> getAllByPassengerEmail(@RequestParam String email) {
-        PassengerModel passenger = passengerService.getPassengerByEmail(email);
-        var tickets = consumer.getTicketsByUserId(passenger.getId());
+    public ResponseEntity<List<TicketDto>> getAllByPassengerEmail(@RequestParam String email) {
+        PassengerDto passenger = passengerService.getPassengerByEmail(email);
+        var tickets = consumer.getTicketsByUserId(passenger.id());
         return ResponseEntity.ok(tickets);
     }
 }

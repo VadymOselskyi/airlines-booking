@@ -1,15 +1,13 @@
 package io.skai.reservation.repository;
 
-
-
-import io.skai.reservation.model.FlightModel;
+import io.skai.reservation.jooq.tables.pojos.Flight;
 
 import java.util.List;
 
 public interface FlightRepository {
 
-    FlightModel insert(FlightModel flight);
+    Flight insert(Flight flight);
 
-    List<FlightModel> selectAll();
-    FlightModel selectOneById(Long id);
+    List<Flight> selectAll();
+    Flight selectOneById(Long id);
 }

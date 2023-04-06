@@ -1,6 +1,6 @@
 package io.skai.reservation.controller;
 
-import io.skai.reservation.model.AirportModel;
+import io.skai.reservation.dto.AirportDto;
 import io.skai.reservation.service.AirportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,12 @@ public class AirportController {
     private final AirportService airportService;
 
     @PostMapping
-    public ResponseEntity<AirportModel> save(@RequestBody AirportModel airport) {
+    public ResponseEntity<AirportDto> save(@RequestBody AirportDto airport) {
         return ResponseEntity.ok(airportService.create(airport));
     }
 
     @GetMapping
-    public ResponseEntity<List<AirportModel>> getAll() {
+    public ResponseEntity<List<AirportDto>> getAll() {
         return ResponseEntity.ok(airportService.getAllAirports());
     }
 }

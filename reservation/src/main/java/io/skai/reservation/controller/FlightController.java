@@ -1,6 +1,6 @@
 package io.skai.reservation.controller;
 
-import io.skai.reservation.model.FlightModel;
+import io.skai.reservation.dto.FlightDto;
 import io.skai.reservation.service.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +16,17 @@ public class FlightController {
     private final FlightService flightService;
 
     @PostMapping("/new")
-    public ResponseEntity<FlightModel> save(@RequestBody FlightModel flight) {
-        return ResponseEntity.ok(flightService.create(flight));
+    public ResponseEntity<FlightDto> save(@RequestBody FlightDto flightDto) {
+        return ResponseEntity.ok(flightService.create(flightDto));
     }
 
     @GetMapping
-    public ResponseEntity<List<FlightModel>> getAll() {
+    public ResponseEntity<List<FlightDto>> getAll() {
         return ResponseEntity.ok(flightService.getAllFlights());
     }
 
     @GetMapping("/{date}")
-    public ResponseEntity<List<FlightModel>> getAllByDepartureDate(@PathVariable String date) {
+    public ResponseEntity<List<FlightDto>> getAllByDepartureDate(@PathVariable String date) {
         return ResponseEntity.ok(flightService.getAllFlightsByDepartureDate(date));
     }
 }

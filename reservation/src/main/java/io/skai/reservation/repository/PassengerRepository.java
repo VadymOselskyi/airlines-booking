@@ -1,9 +1,9 @@
 package io.skai.reservation.repository;
 
-import io.skai.reservation.model.PassengerModel;
+import io.skai.reservation.jooq.tables.pojos.Passenger;
 
 public interface PassengerRepository {
-    PassengerModel insert (PassengerModel passenger);
-    PassengerModel selectPassenger(String email);
-    PassengerModel selectPassenger(Long id);
+    Passenger insert (Passenger passenger);
+    Passenger selectPassenger(String email);
+    Passenger selectPassenger(Long id);
 }

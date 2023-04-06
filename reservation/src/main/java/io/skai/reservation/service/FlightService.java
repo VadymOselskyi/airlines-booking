@@ -1,14 +1,14 @@
 package io.skai.reservation.service;
 
-import io.skai.reservation.model.FlightModel;
+import io.skai.reservation.dto.FlightDto;
 
 import java.util.List;
 
 public interface FlightService {
 
-    FlightModel create(FlightModel flight);
+    FlightDto create(FlightDto flight);
 
-    List<FlightModel> getAllFlights();
+    List<FlightDto> getAllFlights();
 
-    List<FlightModel> getAllFlightsByDepartureDate(String date);
+    List<FlightDto> getAllFlightsByDepartureDate(String date);
 }

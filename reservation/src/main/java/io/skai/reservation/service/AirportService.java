@@ -1,13 +1,13 @@
 package io.skai.reservation.service;
 
-import io.skai.reservation.model.AirportModel;
+import io.skai.reservation.dto.AirportDto;
 
 import java.util.List;
 
 public interface AirportService {
 
-    AirportModel create(AirportModel airport);
-    List<AirportModel> getAllAirports();
-    AirportModel getAirport(Long id);
+    AirportDto create(AirportDto airport);
+    List<AirportDto> getAllAirports();
+    AirportDto getAirport(Long id);
 
 }

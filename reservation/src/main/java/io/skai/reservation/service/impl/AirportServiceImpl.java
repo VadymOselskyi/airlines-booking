@@ -1,6 +1,8 @@
 package io.skai.reservation.service.impl;
 
-import io.skai.reservation.model.AirportModel;
+import io.skai.reservation.dto.AirportDto;
+import io.skai.reservation.jooq.tables.pojos.Airport;
+import io.skai.reservation.mapper.AirportMapper;
 import io.skai.reservation.repository.AirportRepository;
 import io.skai.reservation.service.AirportService;
 import lombok.RequiredArgsConstructor;
@@ -12,19 +14,26 @@ import java.util.List;
 @Service
 public class AirportServiceImpl implements AirportService {
     private final AirportRepository airportRepository;
+private final AirportMapper airportMapper;
 
     @Override
-    public AirportModel create(AirportModel airport) {
-        return airportRepository.insert(airport);
+    public AirportDto create(AirportDto airportDto) {
+        Airport airport = airportMapper.airportDtoToAirport(airportDto);
+        Airport insertedAirport = airportRepository.insert(airport);
+        return airportMapper.airportToAirportDto(insertedAirport);
     }
 
     @Override
-    public List<AirportModel> getAllAirports() {
-        return airportRepository.selectAll();
+    public List<AirportDto> getAllAirports() {
+        return airportRepository.selectAll()
+                .stream()
+                .map(airportMapper::airportToAirportDto)
+                .toList();
     }
 
     @Override
-    public AirportModel getAirport(Long id) {
-        return airportRepository.selectOneById(id);
+    public AirportDto getAirport(Long id) {
+        Airport airport = airportRepository.selectOneById(id);
+        return airportMapper.airportToAirportDto(airport);
     }
 }

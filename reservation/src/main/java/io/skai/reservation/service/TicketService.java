@@ -1,13 +1,13 @@
 package io.skai.reservation.service;
 
-import io.skai.reservation.model.TicketModel;
+import io.skai.reservation.dto.TicketDto;
 
 import java.util.List;
 
 public interface TicketService {
 
-    TicketModel create(TicketModel ticket);
+    TicketDto create(TicketDto ticket);
 
-    List<TicketModel> getAllTickets();
-    List<TicketModel> getAllTicketsByPassengerEmail(String email);
+    List<TicketDto> getAllTickets();
+    List<TicketDto> getAllTicketsByPassengerEmail(String email);
 }

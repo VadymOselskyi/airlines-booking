@@ -1,7 +1,7 @@
 package io.skai.reservation.repository.impl;
 
 import io.skai.reservation.jooq.Tables;
-import io.skai.reservation.model.TicketModel;
+import io.skai.reservation.jooq.tables.pojos.Ticket;
 import io.skai.reservation.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
@@ -15,18 +15,18 @@ public class TicketRepositoryImpl implements TicketRepository {
 
     private final DSLContext dslContext;
     @Override
-    public TicketModel insert(TicketModel ticket) {
+    public Ticket insert(Ticket ticket) {
         return dslContext.insertInto(Tables.TICKET_)
-                .set(Tables.TICKET_.PASSENGER_ID, ticket.passengerId())
-                .set(Tables.TICKET_.PRICE, ticket.price())
-                .set(Tables.TICKET_.FLIGHT_ID, ticket.flightId())
+                .set(Tables.TICKET_.PASSENGER_ID, ticket.getPassengerId())
+                .set(Tables.TICKET_.PRICE, ticket.getPrice())
+                .set(Tables.TICKET_.FLIGHT_ID, ticket.getFlightId())
                 .returning()
-                .fetchOneInto(TicketModel.class);
+                .fetchOneInto(Ticket.class);
     }
 
     @Override
-    public List<TicketModel> selectAll() {
+    public List<Ticket> selectAll() {
         return dslContext.selectFrom(Tables.TICKET_)
-                .fetchInto(TicketModel.class);
+                .fetchInto(Ticket.class);
     }
 }
