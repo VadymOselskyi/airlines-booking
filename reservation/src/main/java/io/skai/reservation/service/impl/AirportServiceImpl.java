@@ -13,8 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class AirportServiceImpl implements AirportService {
+
     private final AirportRepository airportRepository;
-private final AirportMapper airportMapper;
+    private final AirportMapper airportMapper;
 
     @Override
     public AirportDto create(AirportDto airportDto) {

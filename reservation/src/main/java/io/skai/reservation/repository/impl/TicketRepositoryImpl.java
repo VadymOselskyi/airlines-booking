@@ -16,17 +16,17 @@ public class TicketRepositoryImpl implements TicketRepository {
     private final DSLContext dslContext;
     @Override
     public Ticket insert(Ticket ticket) {
-        return dslContext.insertInto(Tables.TICKET_)
-                .set(Tables.TICKET_.PASSENGER_ID, ticket.getPassengerId())
-                .set(Tables.TICKET_.PRICE, ticket.getPrice())
-                .set(Tables.TICKET_.FLIGHT_ID, ticket.getFlightId())
+        return dslContext.insertInto(Tables.TICKET)
+                .set(Tables.TICKET.PASSENGER_ID, ticket.getPassengerId())
+                .set(Tables.TICKET.PRICE, ticket.getPrice())
+                .set(Tables.TICKET.FLIGHT_ID, ticket.getFlightId())
                 .returning()
                 .fetchOneInto(Ticket.class);
     }
 
     @Override
     public List<Ticket> selectAll() {
-        return dslContext.selectFrom(Tables.TICKET_)
+        return dslContext.selectFrom(Tables.TICKET)
                 .fetchInto(Ticket.class);
     }
 }
