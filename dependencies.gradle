@@ -16,5 +16,6 @@ ext.libs = [
 ]
 
 ext.libsTest = [
-        'springTest': 'org.springframework.boot:spring-boot-starter-test:3.0.5'
+        'springTest': 'org.springframework.boot:spring-boot-starter-test:3.0.5',
+        'assertJ'   : 'org.assertj:assertj-core:3.24.2'
 ]
