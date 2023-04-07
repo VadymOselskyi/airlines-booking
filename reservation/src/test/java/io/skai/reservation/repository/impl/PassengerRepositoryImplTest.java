@@ -3,6 +3,7 @@ package io.skai.reservation.repository.impl;
 import io.skai.reservation.jooq.tables.pojos.Passenger;
 import io.skai.reservation.repository.PassengerRepository;
 import org.jooq.DSLContext;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,6 @@ class PassengerRepositoryImplTest {
 
     @BeforeEach
     void setUp() {
-        dslContext.truncate(PASSENGER)
-                .execute();
         passenger = new Passenger();
         passenger.setEmail("vo@gmail.com");
         passenger.setFirstName("Vadim");
@@ -38,6 +37,11 @@ class PassengerRepositoryImplTest {
         passenger.setPhone("097234395");
     }
 
+    @AfterEach
+    void tearDown() {
+        dslContext.truncate(PASSENGER)
+                .execute();
+    }
 
     @Test
     void WhenInsertOneAirportTableShouldHasOneRowTest() {
