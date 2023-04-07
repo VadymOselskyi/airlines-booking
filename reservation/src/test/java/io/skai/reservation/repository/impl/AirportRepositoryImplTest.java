@@ -21,7 +21,7 @@ class AirportRepositoryImplTest {
     @Autowired
     private DSLContext dslContext;
     @Autowired
-    AirportRepository airportRepository;
+    private AirportRepository airportRepository;
     Airport firstAirport;
     Airport secondAirport;
 
@@ -42,7 +42,7 @@ class AirportRepositoryImplTest {
     }
 
     @Test
-    void whenInsertOneElementTableShouldHasOneRow() {
+    void whenInsertOneElementTableShouldHasOneRowTest() {
         Airport insertedAirport = airportRepository.insert(firstAirport);
 
         List<Airport> airports = dslContext.selectFrom(AIRPORT).fetchInto(Airport.class);
@@ -53,7 +53,7 @@ class AirportRepositoryImplTest {
     }
 
     @Test
-    void whenInsertXElementTableShouldHasXRow() {
+    void whenInsertXElementTableShouldHasXRowTest() {
         Airport insertedAirport = airportRepository.insert(firstAirport);
         Airport secondInserted = airportRepository.insert(secondAirport);
 
@@ -68,13 +68,13 @@ class AirportRepositoryImplTest {
     @Test
     void whenNothingWasInsertedSelectAllShouldReturnEmptyListTest() {
 
-        List<Airport> airports = dslContext.selectFrom(AIRPORT).fetchInto(Airport.class);
+        List<Airport> airports = airportRepository.selectAll();
 
         assertThat(airports).isEmpty();
     }
 
     @Test
-    void whenInsertOneObjectSelectAllShouldReturnOne() {
+    void whenInsertOneObjectSelectAllShouldReturnOneTest() {
         Airport expectedAirport = dslContext.insertInto(AIRPORT)
                 .set(AIRPORT.NAME, "airport1")
                 .set(AIRPORT.COUNTRY_CODE, "UA")
@@ -90,10 +90,10 @@ class AirportRepositoryImplTest {
     }
 
     @Test
-    void whenInsertMoreThanOneObjectSelectAllShouldReturnMoreThanOne() {
+    void whenInsertMoreThanOneObjectSelectAllShouldReturnMoreThanOneTest() {
         var expectedAirport = dslContext.insertInto(AIRPORT, AIRPORT.NAME, AIRPORT.COUNTRY_CODE, AIRPORT.CITY)
                 .values("airport1", "UA", "Lviv")
-                .values("International","FRA", "Paris")
+                .values("International", "FRA", "Paris")
                 .returning()
                 .fetchInto(Airport.class);
 
