@@ -10,9 +10,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.mockito.Mockito.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Mockito.*;
+
 class PassengerServiceImplTest {
 
     @InjectMocks
@@ -33,6 +34,7 @@ class PassengerServiceImplTest {
 
         verify(passengerRepository, times(1)).insert(any());
     }
+
     @Test
     void WhenCreateTwoPassengerInsertWillWorkTwiceTest() {
         passengerService.create(any());
@@ -42,7 +44,7 @@ class PassengerServiceImplTest {
     }
 
     @Test
-    void WhenGetByPassengerByEmailShouldReturnPassengerDtoTest(){
+    void WhenGetByPassengerByEmailShouldReturnPassengerDtoTest() {
         Passenger passenger = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
         PassengerDto passengerDto = new PassengerDto(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
 
