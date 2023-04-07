@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<databaseChangeLog 
+<databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-<!--    <preConditions onFail="HALT">-->
-<!--        <changeSetExecuted id="1"-->
-<!--                           author="VadimOselskyi"-->
-<!--                           changeLogFile="changelog-1.0.xml"/>-->
-<!--        <changeSetExecuted id="2"-->
-<!--                           author="VadimOselskyi"-->
-<!--                           changeLogFile="changelog-1.0.xml"/>-->
-<!--        <changeSetExecuted id="3"-->
-<!--                           author="VadimOselskyi"-->
-<!--                           changeLogFile="changelog-1.0.xml"/>-->
-<!--        <changeSetExecuted id="4"-->
-<!--                           author="VadimOselskyi"-->
-<!--                           changeLogFile="changelog-1.0.xml"/>-->
-<!--    </preConditions>-->
+    <!--    <preConditions onFail="HALT">-->
+    <!--        <changeSetExecuted id="1"-->
+    <!--                           author="VadimOselskyi"-->
+    <!--                           changeLogFile="changelog-1.0.xml"/>-->
+    <!--        <changeSetExecuted id="2"-->
+    <!--                           author="VadimOselskyi"-->
+    <!--                           changeLogFile="changelog-1.0.xml"/>-->
+    <!--        <changeSetExecuted id="3"-->
+    <!--                           author="VadimOselskyi"-->
+    <!--                           changeLogFile="changelog-1.0.xml"/>-->
+    <!--        <changeSetExecuted id="4"-->
+    <!--                           author="VadimOselskyi"-->
+    <!--                           changeLogFile="changelog-1.0.xml"/>-->
+    <!--    </preConditions>-->
 
     <changeSet id="1" author="VadimOselskyi">
         <createTable tableName="airport">

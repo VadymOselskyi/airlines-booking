@@ -10,14 +10,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TicketServiceImpl implements TicketService{
+public class TicketServiceImpl implements TicketService {
 
 //    private final TicketRepository ticketRepository;
 
     @Override
     public List<Ticket> getTicketByUserId(Long userId) {
 //        return ticketRepository.findByUserId(userId);
-    return new ArrayList<>();
+        return new ArrayList<>();
     }
 
     @Override

@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 public interface PassengerMapper {
 
     Passenger passengerDtoTOPassenger(PassengerDto dto);
+
     PassengerDto passengerTOPassengerDto(Passenger passenger);
 }

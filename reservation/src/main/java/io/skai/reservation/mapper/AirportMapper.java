@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 public interface AirportMapper {
 
     Airport airportDtoToAirport(AirportDto dto);
+
     AirportDto airportToAirportDto(Airport airport);
 }

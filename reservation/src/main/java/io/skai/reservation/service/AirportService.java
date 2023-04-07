@@ -7,7 +7,9 @@ import java.util.List;
 public interface AirportService {
 
     AirportDto create(AirportDto airport);
+
     List<AirportDto> getAllAirports();
+
     AirportDto getAirport(Long id);
 
 }

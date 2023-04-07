@@ -27,6 +27,7 @@ public class AirportRepositoryImpl implements AirportRepository {
         return dslContext.selectFrom(Tables.AIRPORT)
                 .fetchInto(Airport.class);
     }
+
     public Airport selectOneById(Long id) {
         return dslContext.selectFrom(Tables.AIRPORT)
                 .where(Tables.AIRPORT.ID.eq(id))

@@ -1,7 +1,6 @@
 package io.skai.reservation.repository.impl;
 
 import io.skai.reservation.jooq.Tables;
-
 import io.skai.reservation.jooq.tables.pojos.Flight;
 import io.skai.reservation.repository.FlightRepository;
 import lombok.RequiredArgsConstructor;

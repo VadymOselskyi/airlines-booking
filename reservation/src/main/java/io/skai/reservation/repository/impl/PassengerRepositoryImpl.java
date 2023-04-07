@@ -37,5 +37,6 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     public Passenger selectPassenger(Long id) {
         return dslContext.selectFrom(PASSENGER)
                 .where(PASSENGER.ID.eq(id))
-                .fetchOneInto(Passenger.class);    }
+                .fetchOneInto(Passenger.class);
+    }
 }

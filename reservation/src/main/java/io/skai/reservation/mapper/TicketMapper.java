@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 public interface TicketMapper {
 
     Ticket ticketDtoToTicket(TicketDto dto);
+
     TicketDto ticketToTicketDto(Ticket ticket);
 }

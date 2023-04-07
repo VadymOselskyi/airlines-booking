@@ -9,5 +9,6 @@ public interface AirportRepository {
     Airport insert(Airport airport);
 
     List<Airport> selectAll();
+
     Airport selectOneById(Long id);
 }

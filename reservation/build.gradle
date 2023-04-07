@@ -13,8 +13,10 @@ dependencies {
     implementation libs.feign
     implementation libs.mapstruct
     annotationProcessor libs.mapstructProcessor
+
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ
+    testImplementation libsTest.hamcrest
 }
 buildscript {
     repositories {

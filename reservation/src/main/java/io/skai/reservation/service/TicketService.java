@@ -9,5 +9,6 @@ public interface TicketService {
     TicketDto create(TicketDto ticket);
 
     List<TicketDto> getAllTickets();
+
     List<TicketDto> getAllTicketsByPassengerEmail(String email);
 }

@@ -14,6 +14,7 @@ import java.util.List;
 public class TicketRepositoryImpl implements TicketRepository {
 
     private final DSLContext dslContext;
+
     @Override
     public Ticket insert(Ticket ticket) {
         return dslContext.insertInto(Tables.TICKET)
