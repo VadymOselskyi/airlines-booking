@@ -13,6 +13,7 @@ dependencies {
     implementation libs.feign
     implementation libs.mapstruct
     annotationProcessor libs.mapstructProcessor
+    implementation libs.redis
 
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ

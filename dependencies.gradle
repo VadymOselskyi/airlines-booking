@@ -1,10 +1,8 @@
-
 //ext {
 //    springBootVersion = '3.0.5'
 //}
 
 //def springBootVersion = '3.0.5'
-
 
 
 ext.libs = [
@@ -21,7 +19,9 @@ ext.libs = [
         'dataJdbc'            : 'org.springframework.data:spring-data-jdbc:3.0.4',
         'feign'               : 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1',
         'mapstruct'           : 'org.mapstruct:mapstruct:1.5.3.Final',
-        'mapstructProcessor'  : 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+        'mapstructProcessor'  : 'org.mapstruct:mapstruct-processor:1.5.3.Final',
+        'redis'               : 'org.springframework.boot:spring-boot-starter-data-redis:3.0.5'
+
 ]
 
 ext.libsTest = [
