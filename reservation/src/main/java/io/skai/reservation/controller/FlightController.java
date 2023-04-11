@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/flight")
+@RequestMapping("/flights")
 public class FlightController {
 
     private final FlightService flightService;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<FlightDto> save(@RequestBody FlightDto flightDto) {
         return ResponseEntity.ok(flightService.create(flightDto));
     }
@@ -25,8 +25,4 @@ public class FlightController {
         return ResponseEntity.ok(flightService.getAllFlights());
     }
 
-    @GetMapping("/{date}")
-    public ResponseEntity<List<FlightDto>> getAllByDepartureDate(@PathVariable String date) {
-        return ResponseEntity.ok(flightService.getAllFlightsByDepartureDate(date));
-    }
 }

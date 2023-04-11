@@ -53,5 +53,4 @@ class AirportRepositoryImplTest extends BaseApplicationContextTest {
                 .hasSize(2)
                 .contains(expectedAirport, expectedAirport2);
     }
-
 }

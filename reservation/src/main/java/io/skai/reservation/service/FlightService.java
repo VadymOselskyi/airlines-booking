@@ -9,6 +9,4 @@ public interface FlightService {
     FlightDto create(FlightDto flight);
 
     List<FlightDto> getAllFlights();
-
-    List<FlightDto> getAllFlightsByDepartureDate(String date);
 }
