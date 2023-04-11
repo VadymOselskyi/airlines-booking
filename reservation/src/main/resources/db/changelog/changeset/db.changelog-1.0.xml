@@ -4,22 +4,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <!--    <preConditions onFail="HALT">-->
-    <!--        <changeSetExecuted id="1"-->
-    <!--                           author="VadimOselskyi"-->
-    <!--                           changeLogFile="changelog-1.0.xml"/>-->
-    <!--        <changeSetExecuted id="2"-->
-    <!--                           author="VadimOselskyi"-->
-    <!--                           changeLogFile="changelog-1.0.xml"/>-->
-    <!--        <changeSetExecuted id="3"-->
-    <!--                           author="VadimOselskyi"-->
-    <!--                           changeLogFile="changelog-1.0.xml"/>-->
-    <!--        <changeSetExecuted id="4"-->
-    <!--                           author="VadimOselskyi"-->
-    <!--                           changeLogFile="changelog-1.0.xml"/>-->
-    <!--    </preConditions>-->
+    <changeSet id="create_table_airport" author="VadimOselskyi">
 
-    <changeSet id="1" author="VadimOselskyi">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="airport" />
+            </not>
+        </preConditions>
+
         <createTable tableName="airport">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -36,7 +28,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="2" author="VadimOselskyi">
+    <changeSet id="create_table_flight" author="VadimOselskyi">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="flight" />
+            </not>
+        </preConditions>
+
         <createTable tableName="flight">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -56,7 +54,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="3" author="VadimOselskyi">
+    <changeSet id="create_table_ticket" author="VadimOselskyi">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ticket" />
+            </not>
+        </preConditions>
+
         <createTable tableName="ticket">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -73,7 +77,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="4" author="VadimOselskyi">
+    <changeSet id="create_table_passenger" author="VadimOselskyi">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="passenger" />
+            </not>
+        </preConditions>
+
         <createTable tableName="passenger">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
