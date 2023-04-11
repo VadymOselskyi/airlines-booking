@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/airport")
+@RequestMapping("/airports")
 @RequiredArgsConstructor
 public class AirportController {
 
@@ -23,6 +23,11 @@ public class AirportController {
     @GetMapping
     public ResponseEntity<List<AirportDto>> getAll() {
         return ResponseEntity.ok(airportService.getAllAirports());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AirportDto> get(@PathVariable Long id) {
+        return ResponseEntity.ok(airportService.getAirport(id));
     }
 }
 
