@@ -1,6 +1,6 @@
 package io.skai.reservation.controller;
 
-import io.skai.reservation.consumer.TicketClient;
+import io.skai.reservation.client.TicketClient;
 import io.skai.reservation.dto.PassengerDto;
 import io.skai.reservation.dto.TicketDto;
 import io.skai.reservation.service.PassengerService;
@@ -13,14 +13,14 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/ticket")
+@RequestMapping("/tickets")
 public class TicketController {
 
     private final TicketService ticketService;
     private final PassengerService passengerService;
-    private final TicketClient consumer;
+    private final TicketClient client;
 
-    @PostMapping("/new")
+    @PostMapping
     public ResponseEntity<TicketDto> save(@RequestBody TicketDto ticket) {
 
         return ResponseEntity.ok(ticketService.create(ticket));
@@ -34,7 +34,7 @@ public class TicketController {
     @GetMapping("/history")
     public ResponseEntity<List<TicketDto>> getAllByPassengerEmail(@RequestParam String email) {
         PassengerDto passenger = passengerService.getPassengerByEmail(email);
-        var tickets = consumer.getTicketsByUserId(passenger.id());
+        var tickets = client.getTicketsByUserId(passenger.id());
         return ResponseEntity.ok(tickets);
     }
 }
