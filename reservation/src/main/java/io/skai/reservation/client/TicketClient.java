@@ -1,4 +1,4 @@
-package io.skai.reservation.consumer;
+package io.skai.reservation.client;
 
 import io.skai.reservation.dto.TicketDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,7 +10,7 @@ import java.util.List;
 @FeignClient(name = "ticket", url = "http://localhost:8081")
 public interface TicketClient {
 
-    @GetMapping("/user/{id}/ticket")
-    List<TicketDto> getTicketsByUserId(@PathVariable long id);
+    @GetMapping("/user/{id}")
+    List<TicketDto> getTicketsByUserId(@PathVariable("id") long id);
 }
 
