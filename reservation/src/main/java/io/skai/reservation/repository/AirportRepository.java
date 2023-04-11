@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AirportRepository {
 
-    Airport insert(Airport airport);
+    Airport insert(String name, String countryCode, String city);
 
     List<Airport> selectAll();
 

@@ -16,9 +16,9 @@ import java.util.List;
 public class AirportRepositoryImpl implements AirportRepository {
     private final DSLContext dslContext;
 
-    public Airport insert(Airport airport) {
+    public Airport insert(String name, String countryCode, String city) {
         return dslContext.insertInto(Tables.AIRPORT, Tables.AIRPORT.NAME, Tables.AIRPORT.COUNTRY_CODE, Tables.AIRPORT.CITY)
-                .values(airport.getName(), airport.getCountryCode(), airport.getCity())
+                .values(name, countryCode, city)
                 .returning()
                 .fetchOneInto(Airport.class);
     }
