@@ -4,7 +4,7 @@ import io.skai.reservation.dto.FlightDto;
 import io.skai.reservation.jooq.tables.pojos.Flight;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface FlightMapper {
     Flight flightDtoToFlight(FlightDto dto);
 

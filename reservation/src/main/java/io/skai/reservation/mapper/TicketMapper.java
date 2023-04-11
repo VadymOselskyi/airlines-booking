@@ -4,7 +4,7 @@ import io.skai.reservation.dto.TicketDto;
 import io.skai.reservation.jooq.tables.pojos.Ticket;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface TicketMapper {
 
     Ticket ticketDtoToTicket(TicketDto dto);
