@@ -4,11 +4,7 @@ import io.skai.reservation.dto.AirportDto;
 import io.skai.reservation.jooq.tables.pojos.Airport;
 import io.skai.reservation.mapper.AirportMapper;
 import io.skai.reservation.repository.AirportRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
@@ -17,34 +13,20 @@ import static org.mockito.Mockito.*;
 
 class AirportServiceImplTest {
 
-    @InjectMocks
-    AirportServiceImpl airportService;
-    @Mock
-    AirportRepository airportRepository;
-    @Mock
-    AirportMapper airportMapper;
-    Airport west;
-    Airport south;
-    AirportDto westDto;
-    AirportDto southDto;
+    private final Airport LVIV_AIRPORT = new Airport(1L, "west", "UA", "Lviv");
+    private final Airport ODESA_AIRPORT = new Airport(2L, "south", "UA", "Odesa");
+    private final AirportDto LVIV_AIRPORTDTO = new AirportDto(1L, "west", "UA", "Lviv");
+    private final AirportDto ODESA_AIRPORTDTO = new AirportDto(2L, "south", "UA", "Odesa");
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
+    private final AirportRepository airportRepository = mock(AirportRepository.class);
+    private final AirportMapper airportMapper = mock(AirportMapper.class);
 
-        west = new Airport(1L, "west", "UA", "Lviv");
-        south = new Airport(2L, "south", "UA", "Odesa");
-
-        westDto = new AirportDto(1L, "west", "UA", "Lviv");
-        southDto = new AirportDto(2L, "south", "UA", "Odesa");
-
-    }
-
+    private final AirportServiceImpl airportService = new AirportServiceImpl(airportRepository, airportMapper);
 
     @Test
-    void whenAddTwoAirportsGetAllAirportsShouldReturnTwoAirportsTest() {
+    void whenAddTwoAirportsGetAllAirportsShouldReturnTwoAirports() {
 
-        List<Airport> airports = List.of(west, south);
+        List<Airport> airports = List.of(LVIV_AIRPORT, ODESA_AIRPORT);
 
         when(airportRepository.selectAll()).thenReturn(airports);
         List<AirportDto> airportsDto = airportService.getAllAirports();
@@ -52,41 +34,46 @@ class AirportServiceImplTest {
         assertThat(airportsDto)
                 .hasSize(2);
 
-        verify(airportRepository, times(1)).selectAll();
+        verify(airportRepository).selectAll();
     }
 
     @Test
-    void whenAddTwoAirportsGetAllAirportsShouldContainsTest() {
+    void whenAddTwoAirportsGetAllAirportsShouldContains() {
 
-        List<Airport> airports = List.of(west, south);
+        List<Airport> airports = List.of(LVIV_AIRPORT, ODESA_AIRPORT);
 
         when(airportRepository.selectAll()).thenReturn(airports);
-        when(airportMapper.airportToAirportDto(west)).thenReturn(westDto);
-        when(airportMapper.airportToAirportDto(south)).thenReturn(southDto);
+        when(airportMapper.airportToAirportDto(LVIV_AIRPORT)).thenReturn(LVIV_AIRPORTDTO);
+        when(airportMapper.airportToAirportDto(ODESA_AIRPORT)).thenReturn(ODESA_AIRPORTDTO);
         List<AirportDto> airportsDto = airportService.getAllAirports();
 
         assertThat(airportsDto)
                 .extracting(AirportDto::name)
-                .contains(west.getName(), south.getName());
+                .contains(LVIV_AIRPORT.getName(), ODESA_AIRPORT.getName());
 
-        verify(airportRepository, times(1)).selectAll();
+        verify(airportRepository).selectAll();
     }
 
     @Test
-    void WhenCreateOneAirportInsertWillWriteOnceTest() {
+    void whenCreateOneAirportInsertWillWriteOnce() {
 
-        airportService.create(westDto);
+        airportService.create(LVIV_AIRPORTDTO);
 
-        verify(airportRepository, times(1)).insert(any());
+        verify(airportRepository)
+                .insert(LVIV_AIRPORT.getName(), LVIV_AIRPORT.getCountryCode(), LVIV_AIRPORT.getCity());
     }
 
     @Test
-    void WhenCreateTwoAirportsInsertWillWorkTwiceTest() {
+    void whenCreateTwoAirportsInsertWillWorkTwice() {
 
-        airportService.create(westDto);
-        airportService.create(southDto);
+        airportService.create(LVIV_AIRPORTDTO);
+        airportService.create(ODESA_AIRPORTDTO);
 
-        verify(airportRepository, times(2)).insert(any());
+        verify(airportRepository)
+                .insert(LVIV_AIRPORT.getName(), LVIV_AIRPORT.getCountryCode(), LVIV_AIRPORT.getCity());
+
+        verify(airportRepository)
+                .insert(ODESA_AIRPORT.getName(), ODESA_AIRPORT.getCountryCode(), ODESA_AIRPORT.getCity());
     }
 
 }

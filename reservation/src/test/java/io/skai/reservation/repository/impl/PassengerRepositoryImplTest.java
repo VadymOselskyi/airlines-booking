@@ -1,32 +1,17 @@
 package io.skai.reservation.repository.impl;
 
 import io.skai.reservation.jooq.tables.pojos.Passenger;
-import io.skai.reservation.repository.PassengerRepository;
-import org.jooq.DSLContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-
-import java.util.List;
 
 import static io.skai.reservation.jooq.Tables.PASSENGER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class PassengerRepositoryImplTest {
+class PassengerRepositoryImplTest extends BaseApplicationContextTest {
 
-    @Autowired
-    private DSLContext dslContext;
-
-    @Autowired
-    private PassengerRepository passengerRepository;
-
-    Passenger passenger;
+    private Passenger passenger;
 
     @BeforeEach
     void setUp() {
@@ -44,57 +29,18 @@ class PassengerRepositoryImplTest {
     }
 
     @Test
-    void WhenInsertOneAirportTableShouldHasOneRowTest() {
-        passengerRepository.insert(passenger);
-        List<Passenger> expected = dslContext.selectFrom(PASSENGER).fetchInto(Passenger.class);
-
-        assertThat(expected.size(), is(1));
-        assertThat(expected, anything());
-    }
-
-    @Test
-    void WhenInsertOneAirportTableShouldHasRightAirportTest() {
+    void whenInsertOneAirportTableShouldHasRightAirport() {
         Passenger insertedPassenger = passengerRepository.insert(passenger);
-        List<Passenger> expected = dslContext.selectFrom(PASSENGER).fetchInto(Passenger.class);
+        Passenger expected = passengerRepository.selectPassenger(insertedPassenger.getId());
 
-        assertThat(expected.get(0), equalTo(insertedPassenger));
-        assertThat(expected, contains(insertedPassenger));
+        assertThat(expected, equalTo(insertedPassenger));
     }
 
     @Test
-    void whenNothingWasInsertedSelectAllShouldReturnEmptyListTest() {
+    void whenNothingWasInsertedSelectAllShouldReturnNull() {
         Passenger expected = passengerRepository.selectPassenger(1L);
 
         assertThat(expected, is(nullValue()));
     }
 
-    @Test
-    void whenInsertOneObjectSelectAllShouldReturnOneTest() {
-        Passenger expected = dslContext.insertInto(PASSENGER)
-                .set(PASSENGER.EMAIL, passenger.getEmail())
-                .set(PASSENGER.FIRST_NAME, passenger.getFirstName())
-                .set(PASSENGER.LAST_NAME, passenger.getLastName())
-                .set(PASSENGER.PHONE, passenger.getPhone())
-                .returning()
-                .fetchOneInto(Passenger.class);
-
-        Passenger actual = passengerRepository.selectPassenger(passenger.getEmail());
-
-        assertThat(actual, equalTo(expected));
-    }
-
-    @Test
-    void whenInsertOneObjectSelectAllShouldReturnRightTest() {
-        Passenger expected = dslContext.insertInto(PASSENGER)
-                .set(PASSENGER.EMAIL, passenger.getEmail())
-                .set(PASSENGER.FIRST_NAME, passenger.getFirstName())
-                .set(PASSENGER.LAST_NAME, passenger.getLastName())
-                .set(PASSENGER.PHONE, passenger.getPhone())
-                .returning()
-                .fetchOneInto(Passenger.class);
-
-        Passenger actual = passengerRepository.selectPassenger(passenger.getEmail());
-
-        assertThat(actual, equalTo(expected));
-    }
 }
