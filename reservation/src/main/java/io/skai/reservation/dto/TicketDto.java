@@ -5,5 +5,6 @@ import java.math.BigDecimal;
 public record TicketDto(Long id,
                         Long passengerId,
                         Long flightId,
-                        BigDecimal price) {
+                        BigDecimal price,
+                        String seatNumber) {
 }
