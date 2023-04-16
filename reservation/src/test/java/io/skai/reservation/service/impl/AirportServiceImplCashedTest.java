@@ -10,7 +10,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class AirportServiceImplCashedTest {
@@ -25,26 +26,24 @@ class AirportServiceImplCashedTest {
 
     @Test
     void testCasedMethodGet() {
-
         when(airportRepository.selectOneById(LVIV_AIRPORT.getId())).thenReturn(LVIV_AIRPORT);
 
         airportService.getAirport(LVIV_AIRPORT.getId());
         airportService.getAirport(LVIV_AIRPORT.getId());
 
-        verify(airportRepository, atMostOnce())
+        verify(airportRepository)
                 .selectOneById(LVIV_AIRPORT.getId());
 
     }
 
     @Test
     void testCasedMethodGetAll() {
-
         when(airportRepository.selectAll()).thenReturn(List.of(LVIV_AIRPORT));
 
         airportService.getAllAirports();
         airportService.getAllAirports();
 
-        verify(airportRepository, atMostOnce())
+        verify(airportRepository)
                 .selectAll();
 
     }

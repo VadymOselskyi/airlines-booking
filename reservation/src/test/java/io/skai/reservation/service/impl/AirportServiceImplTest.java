@@ -75,5 +75,4 @@ class AirportServiceImplTest {
         verify(airportRepository)
                 .insert(ODESA_AIRPORT.getName(), ODESA_AIRPORT.getCountryCode(), ODESA_AIRPORT.getCity());
     }
-
 }
