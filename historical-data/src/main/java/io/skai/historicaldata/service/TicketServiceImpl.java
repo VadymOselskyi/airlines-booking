@@ -1,28 +1,32 @@
 package io.skai.historicaldata.service;
 
-
-import io.skai.historicaldata.model.Ticket;
+import io.skai.historicaldata.dto.HistoricalTicketDto;
+import io.skai.historicaldata.mapper.TicketMapper;
+import io.skai.historicaldata.model.HistoricalTicket;
+import io.skai.historicaldata.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class TicketServiceImpl implements TicketService {
 
-//    private final TicketRepository ticketRepository;
+    private final TicketRepository ticketRepository;
+    private final TicketMapper ticketMapper;
 
     @Override
-    public List<Ticket> getTicketByUserId(Long userId) {
-//        return ticketRepository.findByUserId(userId);
-        return new ArrayList<>();
+    public List<HistoricalTicketDto> getTickets(String email) {
+
+        return ticketRepository.find(email).stream()
+                .map(ticketMapper::historicalTicketToHistoricalTicketDto)
+                .toList();
     }
 
     @Override
-    public Ticket saveTicket(Ticket ticket) {
-//        return ticketRepository.save(ticket);
-        return new Ticket();
+    public HistoricalTicketDto saveTicket(HistoricalTicketDto ticketDto) {
+        HistoricalTicket historicalTicket = ticketMapper.historicalTicketDtoToHistoricalTicket(ticketDto);
+        return ticketMapper.historicalTicketToHistoricalTicketDto(ticketRepository.save(historicalTicket));
     }
 }

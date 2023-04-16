@@ -1,11 +1,11 @@
 package io.skai.historicaldata.service;
 
-import io.skai.historicaldata.model.Ticket;
+import io.skai.historicaldata.dto.HistoricalTicketDto;
 
 import java.util.List;
 
 public interface TicketService {
-    List<Ticket> getTicketByUserId(Long userId);
+    List<HistoricalTicketDto> getTickets(String email);
 
-    Ticket saveTicket(Ticket ticket);
+    HistoricalTicketDto saveTicket(HistoricalTicketDto ticketDto);
 }
