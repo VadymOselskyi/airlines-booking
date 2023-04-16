@@ -6,10 +6,12 @@ package io.skai.reservation.jooq;
 
 import io.skai.reservation.jooq.tables.Airport;
 import io.skai.reservation.jooq.tables.Flight;
+import io.skai.reservation.jooq.tables.HistoryTicket;
 import io.skai.reservation.jooq.tables.Passenger;
 import io.skai.reservation.jooq.tables.Ticket;
 import io.skai.reservation.jooq.tables.records.AirportRecord;
 import io.skai.reservation.jooq.tables.records.FlightRecord;
+import io.skai.reservation.jooq.tables.records.HistoryTicketRecord;
 import io.skai.reservation.jooq.tables.records.PassengerRecord;
 import io.skai.reservation.jooq.tables.records.TicketRecord;
 
@@ -33,6 +35,7 @@ public class Keys {
     public static final UniqueKey<AirportRecord> KEY_AIRPORT_NAME = Internal.createUniqueKey(Airport.AIRPORT, DSL.name("KEY_airport_name"), new TableField[] { Airport.AIRPORT.NAME }, true);
     public static final UniqueKey<AirportRecord> KEY_AIRPORT_PRIMARY = Internal.createUniqueKey(Airport.AIRPORT, DSL.name("KEY_airport_PRIMARY"), new TableField[] { Airport.AIRPORT.ID }, true);
     public static final UniqueKey<FlightRecord> KEY_FLIGHT_PRIMARY = Internal.createUniqueKey(Flight.FLIGHT, DSL.name("KEY_flight_PRIMARY"), new TableField[] { Flight.FLIGHT.ID }, true);
+    public static final UniqueKey<HistoryTicketRecord> KEY_HISTORY_TICKET_PRIMARY = Internal.createUniqueKey(HistoryTicket.HISTORY_TICKET, DSL.name("KEY_history_ticket_PRIMARY"), new TableField[] { HistoryTicket.HISTORY_TICKET.ID }, true);
     public static final UniqueKey<PassengerRecord> KEY_PASSENGER_EMAIL = Internal.createUniqueKey(Passenger.PASSENGER, DSL.name("KEY_passenger_email"), new TableField[] { Passenger.PASSENGER.EMAIL }, true);
     public static final UniqueKey<PassengerRecord> KEY_PASSENGER_PHONE = Internal.createUniqueKey(Passenger.PASSENGER, DSL.name("KEY_passenger_phone"), new TableField[] { Passenger.PASSENGER.PHONE }, true);
     public static final UniqueKey<PassengerRecord> KEY_PASSENGER_PRIMARY = Internal.createUniqueKey(Passenger.PASSENGER, DSL.name("KEY_passenger_PRIMARY"), new TableField[] { Passenger.PASSENGER.ID }, true);

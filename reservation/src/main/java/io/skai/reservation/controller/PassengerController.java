@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/passengers")
+@RequestMapping("/api/passengers")
 @RequiredArgsConstructor
 public class PassengerController {
 
@@ -19,9 +21,8 @@ public class PassengerController {
         return ResponseEntity.ok(passengerService.create(passenger));
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<PassengerDto> getAll(@PathVariable String email) {
-        return ResponseEntity.ok(passengerService.getPassengerByEmail(email));
+    @GetMapping
+    public ResponseEntity<List<PassengerDto>> getAll() {
+        return ResponseEntity.ok(passengerService.getPassengers());
     }
-
 }

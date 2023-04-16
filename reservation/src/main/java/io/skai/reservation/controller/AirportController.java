@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/airports")
+@RequestMapping("/api/airports")
 @RequiredArgsConstructor
 public class AirportController {
 
@@ -30,4 +30,3 @@ public class AirportController {
         return ResponseEntity.ok(airportService.getAirport(id));
     }
 }
-

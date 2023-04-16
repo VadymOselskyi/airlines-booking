@@ -1,9 +1,8 @@
 package io.skai.reservation.controller;
 
 import io.skai.reservation.client.TicketClient;
-import io.skai.reservation.dto.PassengerDto;
+import io.skai.reservation.dto.HistoryTicketDto;
 import io.skai.reservation.dto.TicketDto;
-import io.skai.reservation.service.PassengerService;
 import io.skai.reservation.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +12,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/tickets")
+@RequestMapping("/api/tickets")
 public class TicketController {
 
     private final TicketService ticketService;
-    private final PassengerService passengerService;
-    private final TicketClient client;
+    private final TicketClient ticketClient;
 
     @PostMapping
     public ResponseEntity<TicketDto> save(@RequestBody TicketDto ticket) {
@@ -32,9 +30,8 @@ public class TicketController {
     }
 
     @GetMapping("/history")
-    public ResponseEntity<List<TicketDto>> getAllByPassengerEmail(@RequestParam String email) {
-        PassengerDto passenger = passengerService.getPassengerByEmail(email);
-        var tickets = client.getTicketsByUserId(passenger.id());
+    public ResponseEntity<List<HistoryTicketDto>> getAllByPassengerEmail(@RequestParam String email) {
+        List<HistoryTicketDto> tickets = ticketClient.getHistoryTickets(email);
         return ResponseEntity.ok(tickets);
     }
 }
