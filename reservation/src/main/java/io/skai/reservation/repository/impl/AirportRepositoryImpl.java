@@ -3,14 +3,12 @@ package io.skai.reservation.repository.impl;
 import io.skai.reservation.jooq.Tables;
 import io.skai.reservation.jooq.tables.pojos.Airport;
 import io.skai.reservation.repository.AirportRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Transactional
 @Repository
 @RequiredArgsConstructor
 public class AirportRepositoryImpl implements AirportRepository {

@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import static io.skai.reservation.jooq.Tables.PASSENGER;
 
 
@@ -27,10 +29,9 @@ public class PassengerRepositoryImpl implements PassengerRepository {
     }
 
     @Override
-    public Passenger selectPassenger(String email) {
+    public List<Passenger> selectPassengers() {
         return dslContext.selectFrom(PASSENGER)
-                .where(PASSENGER.EMAIL.eq(email))
-                .fetchOneInto(Passenger.class);
+                .fetchInto(Passenger.class);
     }
 
     @Override
