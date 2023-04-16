@@ -1,9 +1,6 @@
-package io.skai.reservation.repository.impl;
+package io.skai.reservation;
 
-import io.skai.reservation.repository.AirportRepository;
-import io.skai.reservation.repository.FlightRepository;
-import io.skai.reservation.repository.PassengerRepository;
-import io.skai.reservation.repository.TicketRepository;
+import io.skai.reservation.repository.*;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,4 +20,6 @@ public class BaseApplicationContextTest {
     protected FlightRepository flightRepository;
     @Autowired
     protected TicketRepository ticketRepository;
+    @Autowired
+    protected PassengerHibernateRepository passengerHibernateRepository;
 }
