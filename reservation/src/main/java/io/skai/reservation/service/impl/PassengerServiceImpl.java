@@ -8,6 +8,8 @@ import io.skai.reservation.service.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PassengerServiceImpl implements PassengerService {
@@ -19,12 +21,14 @@ public class PassengerServiceImpl implements PassengerService {
     public PassengerDto create(PassengerDto passengerDto) {
         Passenger passenger = passengerMapper.passengerDtoTOPassenger(passengerDto);
         Passenger insertedPassenger = passengerRepository.insert(passenger);
-        return passengerMapper.passengerTOPassengerDto(insertedPassenger);
+        return passengerMapper.passengerToPassengerDto(insertedPassenger);
     }
 
     @Override
-    public PassengerDto getPassengerByEmail(String email) {
-        Passenger passenger = passengerRepository.selectPassenger(email);
-        return passengerMapper.passengerTOPassengerDto(passenger);
+    public List<PassengerDto> getPassengers() {
+        List<Passenger> passengers = passengerRepository.selectPassengers();
+        return passengers.stream()
+                .map(passengerMapper::passengerToPassengerDto)
+                .toList();
     }
 }
