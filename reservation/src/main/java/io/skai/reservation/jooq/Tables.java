@@ -6,6 +6,7 @@ package io.skai.reservation.jooq;
 
 import io.skai.reservation.jooq.tables.Airport;
 import io.skai.reservation.jooq.tables.Flight;
+import io.skai.reservation.jooq.tables.HistoryTicket;
 import io.skai.reservation.jooq.tables.Passenger;
 import io.skai.reservation.jooq.tables.Ticket;
 
@@ -25,6 +26,11 @@ public class Tables {
      * The table <code>airlines-db.flight</code>.
      */
     public static final Flight FLIGHT = Flight.FLIGHT;
+
+    /**
+     * The table <code>airlines-db.history_ticket</code>.
+     */
+    public static final HistoryTicket HISTORY_TICKET = HistoryTicket.HISTORY_TICKET;
 
     /**
      * The table <code>airlines-db.passenger</code>.

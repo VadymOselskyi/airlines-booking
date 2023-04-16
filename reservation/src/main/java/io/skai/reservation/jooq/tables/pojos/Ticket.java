@@ -20,6 +20,7 @@ public class Ticket implements Serializable {
     private Long passengerId;
     private Long flightId;
     private BigDecimal price;
+    private String seatNumber;
 
     public Ticket() {}
 
@@ -28,18 +29,21 @@ public class Ticket implements Serializable {
         this.passengerId = value.passengerId;
         this.flightId = value.flightId;
         this.price = value.price;
+        this.seatNumber = value.seatNumber;
     }
 
     public Ticket(
         Long id,
         Long passengerId,
         Long flightId,
-        BigDecimal price
+        BigDecimal price,
+        String seatNumber
     ) {
         this.id = id;
         this.passengerId = passengerId;
         this.flightId = flightId;
         this.price = price;
+        this.seatNumber = seatNumber;
     }
 
     /**
@@ -98,6 +102,20 @@ public class Ticket implements Serializable {
         this.price = price;
     }
 
+    /**
+     * Getter for <code>airlines-db.ticket.seat_number</code>.
+     */
+    public String getSeatNumber() {
+        return this.seatNumber;
+    }
+
+    /**
+     * Setter for <code>airlines-db.ticket.seat_number</code>.
+     */
+    public void setSeatNumber(String seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -131,6 +149,12 @@ public class Ticket implements Serializable {
         }
         else if (!this.price.equals(other.price))
             return false;
+        if (this.seatNumber == null) {
+            if (other.seatNumber != null)
+                return false;
+        }
+        else if (!this.seatNumber.equals(other.seatNumber))
+            return false;
         return true;
     }
 
@@ -142,6 +166,7 @@ public class Ticket implements Serializable {
         result = prime * result + ((this.passengerId == null) ? 0 : this.passengerId.hashCode());
         result = prime * result + ((this.flightId == null) ? 0 : this.flightId.hashCode());
         result = prime * result + ((this.price == null) ? 0 : this.price.hashCode());
+        result = prime * result + ((this.seatNumber == null) ? 0 : this.seatNumber.hashCode());
         return result;
     }
 
@@ -153,6 +178,7 @@ public class Ticket implements Serializable {
         sb.append(", ").append(passengerId);
         sb.append(", ").append(flightId);
         sb.append(", ").append(price);
+        sb.append(", ").append(seatNumber);
 
         sb.append(")");
         return sb.toString();
