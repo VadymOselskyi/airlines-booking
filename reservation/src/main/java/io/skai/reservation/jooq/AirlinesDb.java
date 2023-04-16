@@ -6,6 +6,7 @@ package io.skai.reservation.jooq;
 
 import io.skai.reservation.jooq.tables.Airport;
 import io.skai.reservation.jooq.tables.Flight;
+import io.skai.reservation.jooq.tables.HistoryTicket;
 import io.skai.reservation.jooq.tables.Passenger;
 import io.skai.reservation.jooq.tables.Ticket;
 
@@ -41,6 +42,11 @@ public class AirlinesDb extends SchemaImpl {
     public final Flight FLIGHT = Flight.FLIGHT;
 
     /**
+     * The table <code>airlines-db.history_ticket</code>.
+     */
+    public final HistoryTicket HISTORY_TICKET = HistoryTicket.HISTORY_TICKET;
+
+    /**
      * The table <code>airlines-db.passenger</code>.
      */
     public final Passenger PASSENGER = Passenger.PASSENGER;
@@ -68,6 +74,7 @@ public class AirlinesDb extends SchemaImpl {
         return Arrays.asList(
             Airport.AIRPORT,
             Flight.FLIGHT,
+            HistoryTicket.HISTORY_TICKET,
             Passenger.PASSENGER,
             Ticket.TICKET
         );
