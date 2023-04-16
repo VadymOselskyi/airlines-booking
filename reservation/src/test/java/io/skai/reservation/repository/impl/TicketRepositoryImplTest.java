@@ -1,5 +1,6 @@
 package io.skai.reservation.repository.impl;
 
+import io.skai.reservation.BaseApplicationContextTest;
 import io.skai.reservation.jooq.Tables;
 import io.skai.reservation.jooq.tables.pojos.Ticket;
 import org.junit.jupiter.api.AfterEach;
@@ -29,7 +30,7 @@ class TicketRepositoryImplTest extends BaseApplicationContextTest {
 
     @Test
     void whenInsertOneItemThenSelectAllShouldReturnListWithOneTicket() {
-        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(250));
+        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(250), "1B");
         Ticket insertedTicket = ticketRepository.insert(ticket);
         List<Ticket> tickets = ticketRepository.selectAll();
 

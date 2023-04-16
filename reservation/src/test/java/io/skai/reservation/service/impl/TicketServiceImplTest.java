@@ -29,8 +29,8 @@ class TicketServiceImplTest {
 
     @Test
     void whenDbHasOneItemGetAllShouldReturnOneTicket() {
-        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120));
-        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120));
+        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
+        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120), "1B");
 
         when(ticketMapper.ticketToTicketDto(ticket)).thenReturn(ticketDto);
         when(ticketRepository.selectAll()).thenReturn(List.of(ticket));
@@ -46,8 +46,8 @@ class TicketServiceImplTest {
 
     @Test
     void whenCreateOneTicketThenTicketRepositoryShouldInsertOnce() {
-        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120));
-        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120));
+        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
+        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120), "1B");
 
         when(ticketMapper.ticketDtoToTicket(ticketDto)).thenReturn(ticket);
 
@@ -61,8 +61,8 @@ class TicketServiceImplTest {
 
     @Test
     void whenFlightWithIdDoesNotExistCreateShouldThrowException() {
-        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120));
-        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120));
+        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
+        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120), "1B");
 
         when(ticketMapper.ticketDtoToTicket(ticketDto)).thenReturn(ticket);
 
@@ -76,8 +76,8 @@ class TicketServiceImplTest {
 
     @Test
     void whenPassengerWithIdDoesNotExistCreateShouldThrowException() {
-        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120));
-        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120));
+        Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
+        TicketDto ticketDto = new TicketDto(1L, 1L, 1L, new BigDecimal(120), "1B");
 
         when(ticketMapper.ticketDtoToTicket(ticketDto)).thenReturn(ticket);
 

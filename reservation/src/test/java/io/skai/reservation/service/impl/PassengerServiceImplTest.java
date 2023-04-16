@@ -7,8 +7,10 @@ import io.skai.reservation.repository.PassengerRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.contains;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -41,14 +43,10 @@ class PassengerServiceImplTest {
         Passenger passenger = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
         PassengerDto passengerDto = new PassengerDto(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
 
-        when(passengerRepository.selectPassenger(passenger.getEmail())).thenReturn(passenger);
-        when(passengerMapper.passengerTOPassengerDto(passenger)).thenReturn(passengerDto);
-        PassengerDto passengerByEmail = passengerService.getPassengerByEmail(passengerDto.email());
+        when(passengerRepository.selectPassengers()).thenReturn(List.of(passenger));
+        when(passengerMapper.passengerToPassengerDto(passenger)).thenReturn(passengerDto);
+        List<PassengerDto> passengers = passengerService.getPassengers();
 
-        assertThat(passengerByEmail.id(), equalTo(passenger.getId()));
-        assertThat(passengerByEmail.firstName(), equalTo(passenger.getFirstName()));
-        assertThat(passengerByEmail.lastName(), equalTo(passenger.getLastName()));
-        assertThat(passengerByEmail.email(), equalTo(passenger.getEmail()));
-        assertThat(passengerByEmail.phone(), equalTo(passenger.getPhone()));
+        assertThat(passengers, contains(passengerDto));
     }
 }

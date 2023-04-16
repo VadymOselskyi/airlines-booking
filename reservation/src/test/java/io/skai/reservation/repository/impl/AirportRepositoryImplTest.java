@@ -1,5 +1,6 @@
 package io.skai.reservation.repository.impl;
 
+import io.skai.reservation.BaseApplicationContextTest;
 import io.skai.reservation.jooq.tables.pojos.Airport;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

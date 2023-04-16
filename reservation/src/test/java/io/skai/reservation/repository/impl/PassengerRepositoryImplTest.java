@@ -1,5 +1,6 @@
 package io.skai.reservation.repository.impl;
 
+import io.skai.reservation.BaseApplicationContextTest;
 import io.skai.reservation.jooq.tables.pojos.Passenger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,5 +43,4 @@ class PassengerRepositoryImplTest extends BaseApplicationContextTest {
 
         assertThat(expected, is(nullValue()));
     }
-
 }
