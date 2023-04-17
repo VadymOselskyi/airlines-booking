@@ -3,8 +3,7 @@ package io.skai.reservation.dto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public record HistoryTicketDto(Long id,
-                               String firstName,
+public record HistoryTicketDto(String firstName,
                                String lastName,
                                String email,
                                String phone,

@@ -11,6 +11,11 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface HistoryTicketMapper {
 
+    @Mapping(target = "passenger.id", ignore = true)
+    @Mapping(target = "ticket.id", ignore = true)
+    @Mapping(target = "flight.id", ignore = true)
+    @Mapping(target = "departureAirport.id", ignore = true)
+    @Mapping(target = "arrivalAirport.id", ignore = true)
     @Mapping(source = "passenger.firstName", target = "firstName")
     @Mapping(source = "passenger.lastName", target = "lastName")
     @Mapping(source = "passenger.email", target = "email")
