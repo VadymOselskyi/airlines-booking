@@ -1,0 +1,15 @@
+dependencies {
+    implementation libs.springBoot
+    implementation libs.dataJdbc
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+    implementation libs.openApi
+    implementation libs.mysql
+    implementation libs.mapstruct
+    annotationProcessor libs.mapstructProcessor
+    implementation libs.liquibase
+
+    testImplementation libsTest.springTest
+    testImplementation libsTest.assertJ
+    testImplementation libsTest.hamcrest
+}

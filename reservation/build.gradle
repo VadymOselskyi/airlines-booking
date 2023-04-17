@@ -1,0 +1,35 @@
+dependencies {
+    implementation libs.springBoot
+    implementation libs.devTools
+    implementation libs.jpa
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+    implementation libs.openApi
+    implementation libs.mysql
+    implementation libs.springBootValidation
+    implementation libs.liquibase
+    implementation libs.jooq
+    implementation libs.jooqCodegen
+    implementation libs.feign
+    implementation libs.mapstruct
+    annotationProcessor libs.mapstructProcessor
+    implementation libs.redis
+
+    testImplementation libsTest.springTest
+    testImplementation libsTest.assertJ
+    testImplementation libsTest.hamcrest
+}
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath libs.jooqCodegen
+        classpath libs.mysql
+    }
+}
+
+apply from: "$rootProject.projectDir/jooq.gradle"
+

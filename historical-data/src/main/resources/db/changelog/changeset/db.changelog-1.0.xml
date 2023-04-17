@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_table_history_ticket" author="VadimOselskyi">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="history_ticket"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="history_ticket">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_number" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="decimal(8,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_airport_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_country_code" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_airport_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column><column name="arrival_country_code" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column><column name="arrival_city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

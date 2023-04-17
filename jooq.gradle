@@ -1,0 +1,47 @@
+
+dependencies {
+    implementation libs.springBoot
+    implementation libs.mysql
+    implementation libs.jooq
+    implementation libs.jooqCodegen
+    implementation libs.devTools
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath libs.jooqCodegen
+        classpath libs.mysql
+    }
+}
+
+import org.jooq.codegen.GenerationTool
+import org.jooq.meta.jaxb.*
+
+
+tasks.register("generate") {
+    println("Hello from generate")
+    def outputDirectory = projectDir.toString() + '/src/main/java'
+    GenerationTool.generate(new Configuration()
+            .withJdbc(new Jdbc()
+                    .withDriver('com.mysql.cj.jdbc.Driver')
+                    .withUrl('jdbc:mysql://localhost:3306/airlines-db')
+                    .withUser('vadim')
+                    .withPassword('12345'))
+            .withGenerator(new Generator()
+                    .withDatabase(new Database()
+                            .withInputSchema('airlines-db')
+                            .withIncludes('.*')
+                            .withExcludes("DATABASECHANGELOG|DATABASECHANGELOGLOCK"))
+                    .withGenerate(new Generate()
+                            .withDeprecated(false)
+                            .withPojos(true)
+                            .withDaos(false))
+                    .withTarget(new Target()
+                            .withDirectory(outputDirectory)
+                            .withPackageName('io.skai.reservation.jooq'))))
+}

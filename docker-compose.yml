@@ -1,0 +1,42 @@
+version: "3.3"
+
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-db
+    environment:
+      MYSQL_DATABASE: airlines-db
+      MYSQL_USER: vadim
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_PASSWORD: 12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+
+  mysql-db-test:
+    image: mysql:latest
+    container_name: mysql-testdb
+    environment:
+      MYSQL_DATABASE: airlines-db
+      MYSQL_USER: sa
+      MYSQL_ROOT_PASSWORD: sa
+      MYSQL_PASSWORD: sa
+    ports:
+      - "3307:3306"
+
+  redis:
+    container_name: redis
+    image: 'bitnami/redis:latest'
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_APPLICATION_MODE=master
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - redis-data:/data
+
+
+volumes:
+  my-db:
+  redis-data:
