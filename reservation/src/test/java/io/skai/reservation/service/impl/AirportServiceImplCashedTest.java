@@ -25,7 +25,7 @@ class AirportServiceImplCashedTest {
     private AirportService airportService;
 
     @Test
-    void testCasedMethodGet() {
+    void whenGetTwoAirportsThenSelectOneShouldVerifyOnce() {
         when(airportRepository.selectOneById(LVIV_AIRPORT.getId())).thenReturn(LVIV_AIRPORT);
 
         airportService.getAirport(LVIV_AIRPORT.getId());
@@ -37,7 +37,7 @@ class AirportServiceImplCashedTest {
     }
 
     @Test
-    void testCasedMethodGetAll() {
+    void whenGetAllTwiceThenSelectAllWorkOnce() {
         when(airportRepository.selectAll()).thenReturn(List.of(LVIV_AIRPORT));
 
         airportService.getAllAirports();
