@@ -12,7 +12,7 @@ import lombok.*;
 @EqualsAndHashCode
 @Entity
 @Table(name = "passenger")
-public class PassengerModel {
+public class Passenger {
     @Id
     private Long id;
     private String firstName;

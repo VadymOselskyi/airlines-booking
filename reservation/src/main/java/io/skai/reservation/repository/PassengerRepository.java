@@ -1,14 +1,9 @@
 package io.skai.reservation.repository;
 
-import io.skai.reservation.jooq.tables.pojos.Passenger;
+import io.skai.reservation.model.Passenger;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface PassengerRepository {
-
-    Passenger insert(Passenger passenger);
-
-    List<Passenger> selectPassengers();
-
-    Passenger selectPassenger(Long id);
+@Repository
+public interface PassengerRepository extends JpaRepository<Passenger, Long> {
 }

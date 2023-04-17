@@ -20,6 +20,4 @@ public class BaseApplicationContextTest {
     protected FlightRepository flightRepository;
     @Autowired
     protected TicketRepository ticketRepository;
-    @Autowired
-    protected PassengerHibernateRepository passengerHibernateRepository;
 }

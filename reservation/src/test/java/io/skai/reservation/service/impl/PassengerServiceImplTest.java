@@ -1,8 +1,8 @@
 package io.skai.reservation.service.impl;
 
 import io.skai.reservation.dto.PassengerDto;
-import io.skai.reservation.jooq.tables.pojos.Passenger;
 import io.skai.reservation.mapper.PassengerMapper;
+import io.skai.reservation.model.Passenger;
 import io.skai.reservation.repository.PassengerRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -27,14 +27,14 @@ class PassengerServiceImplTest {
         PassengerDto passengerDto = new PassengerDto(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
         PassengerDto passengerDto2 = new PassengerDto(2L, "Anton", "Pascal", "an.pas@gmail.com", "+38006349529");
 
-        when(passengerMapper.passengerDtoTOPassenger(passengerDto)).thenReturn(passenger);
-        when(passengerMapper.passengerDtoTOPassenger(passengerDto2)).thenReturn(passenger2);
+        when(passengerMapper.passengerDtoToPassenger(passengerDto)).thenReturn(passenger);
+        when(passengerMapper.passengerDtoToPassenger(passengerDto2)).thenReturn(passenger2);
 
         passengerService.create(passengerDto);
         passengerService.create(passengerDto2);
 
-        verify(passengerRepository).insert(passenger);
-        verify(passengerRepository).insert(passenger2);
+        verify(passengerRepository).save(passenger);
+        verify(passengerRepository).save(passenger2);
     }
 
     @Test
@@ -42,7 +42,7 @@ class PassengerServiceImplTest {
         Passenger passenger = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
         PassengerDto passengerDto = new PassengerDto(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
 
-        when(passengerRepository.selectPassengers()).thenReturn(List.of(passenger));
+        when(passengerRepository.findAll()).thenReturn(List.of(passenger));
         when(passengerMapper.passengerToPassengerDto(passenger)).thenReturn(passengerDto);
         List<PassengerDto> passengers = passengerService.getPassengers();
 
