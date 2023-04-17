@@ -72,7 +72,6 @@ class FlightServiceImplTest {
                 + " are not exists"))
                 .when(airportValidator).validate(flight.getDepartureAirportId(), flight.getArrivalAirportId());
 
-
         assertThatThrownBy(() -> flightService.create(flightDto))
                 .isInstanceOf(EntityDoesNotExistsException.class)
                 .hasMessage("Airports with ids:"
