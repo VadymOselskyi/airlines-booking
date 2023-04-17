@@ -37,7 +37,7 @@ public class AirportServiceImpl implements AirportService {
     @Override
     @Cacheable(value = "airport")
     public AirportDto getAirport(Long id) {
-        Airport airport = airportRepository.selectOneById(id);
+        Airport airport = airportRepository.selectOne(id);
         return airportMapper.airportToAirportDto(airport);
     }
 }

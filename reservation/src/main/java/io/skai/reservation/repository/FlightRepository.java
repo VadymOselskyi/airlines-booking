@@ -9,6 +9,4 @@ public interface FlightRepository {
     Flight insert(Flight flight);
 
     List<Flight> selectAll();
-
-    Flight selectOneById(Long id);
 }

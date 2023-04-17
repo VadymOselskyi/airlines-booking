@@ -31,11 +31,4 @@ public class FlightRepositoryImpl implements FlightRepository {
         return dslContext.selectFrom(Tables.FLIGHT)
                 .fetchInto(Flight.class);
     }
-
-    @Override
-    public Flight selectOneById(Long id) {
-        return dslContext.selectFrom(Tables.FLIGHT)
-                .where(Tables.FLIGHT.ID.eq(id))
-                .fetchOneInto(Flight.class);
-    }
 }

@@ -26,14 +26,13 @@ class AirportServiceImplCashedTest {
 
     @Test
     void whenGetTwoAirportsThenSelectOneShouldVerifyOnce() {
-        when(airportRepository.selectOneById(LVIV_AIRPORT.getId())).thenReturn(LVIV_AIRPORT);
+        when(airportRepository.selectOne(LVIV_AIRPORT.getId())).thenReturn(LVIV_AIRPORT);
 
         airportService.getAirport(LVIV_AIRPORT.getId());
         airportService.getAirport(LVIV_AIRPORT.getId());
 
         verify(airportRepository)
-                .selectOneById(LVIV_AIRPORT.getId());
-
+                .selectOne(LVIV_AIRPORT.getId());
     }
 
     @Test
@@ -45,6 +44,5 @@ class AirportServiceImplCashedTest {
 
         verify(airportRepository)
                 .selectAll();
-
     }
 }

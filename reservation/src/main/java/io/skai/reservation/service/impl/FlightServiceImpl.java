@@ -34,5 +34,4 @@ public class FlightServiceImpl implements FlightService {
                 .map(flightMapper::flightToFlightDto)
                 .toList();
     }
-
 }

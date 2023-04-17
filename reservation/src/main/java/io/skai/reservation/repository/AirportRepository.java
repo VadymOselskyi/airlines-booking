@@ -10,5 +10,5 @@ public interface AirportRepository {
 
     List<Airport> selectAll();
 
-    Airport selectOneById(Long id);
+    Airport selectOne(Long id);
 }

@@ -38,5 +38,4 @@ class FlightRepositoryImplTest extends BaseApplicationContextTest {
 
         assertThat(flights, contains(insertedFlight));
     }
-
 }

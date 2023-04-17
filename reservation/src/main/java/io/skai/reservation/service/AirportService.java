@@ -11,5 +11,4 @@ public interface AirportService {
     List<AirportDto> getAllAirports();
 
     AirportDto getAirport(Long id);
-
 }

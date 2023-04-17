@@ -24,5 +24,4 @@ public class FlightController {
     public ResponseEntity<List<FlightDto>> getAll() {
         return ResponseEntity.ok(flightService.getAllFlights());
     }
-
 }
