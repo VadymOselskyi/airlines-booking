@@ -24,22 +24,7 @@ class AirportServiceImplTest {
     private final AirportServiceImpl airportService = new AirportServiceImpl(airportRepository, airportMapper);
 
     @Test
-    void whenAddTwoAirportsGetAllAirportsShouldReturnTwoAirports() {
-
-        List<Airport> airports = List.of(LVIV_AIRPORT, ODESA_AIRPORT);
-
-        when(airportRepository.selectAll()).thenReturn(airports);
-        List<AirportDto> airportsDto = airportService.getAllAirports();
-
-        assertThat(airportsDto)
-                .hasSize(2);
-
-        verify(airportRepository).selectAll();
-    }
-
-    @Test
-    void whenAddTwoAirportsGetAllAirportsShouldContains() {
-
+    void whenAddTwoAirportsGetAllAirportsShouldContainsTwoAirports() {
         List<Airport> airports = List.of(LVIV_AIRPORT, ODESA_AIRPORT);
 
         when(airportRepository.selectAll()).thenReturn(airports);
@@ -48,15 +33,14 @@ class AirportServiceImplTest {
         List<AirportDto> airportsDto = airportService.getAllAirports();
 
         assertThat(airportsDto)
-                .extracting(AirportDto::name)
-                .contains(LVIV_AIRPORT.getName(), ODESA_AIRPORT.getName());
+                .hasSize(2)
+                .contains(LVIV_AIRPORTDTO, ODESA_AIRPORTDTO);
 
         verify(airportRepository).selectAll();
     }
 
     @Test
     void whenCreateOneAirportInsertWillWriteOnce() {
-
         airportService.create(LVIV_AIRPORTDTO);
 
         verify(airportRepository)
@@ -65,7 +49,6 @@ class AirportServiceImplTest {
 
     @Test
     void whenCreateTwoAirportsInsertWillWorkTwice() {
-
         airportService.create(LVIV_AIRPORTDTO);
         airportService.create(ODESA_AIRPORTDTO);
 
