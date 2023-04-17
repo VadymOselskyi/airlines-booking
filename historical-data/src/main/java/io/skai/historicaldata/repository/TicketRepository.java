@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends CrudRepository <HistoricalTicket, Long> {
     @Query("SELECT * FROM history_ticket WHERE email = :email")
-    List<HistoricalTicket> find(@Param("email") String email);
+    List<HistoricalTicket> findAll(@Param("email") String email);
 }
