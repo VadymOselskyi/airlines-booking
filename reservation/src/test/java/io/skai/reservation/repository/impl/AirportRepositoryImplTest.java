@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static io.skai.reservation.jooq.Tables.AIRPORT;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
 
 class AirportRepositoryImplTest extends BaseApplicationContextTest {
 
@@ -23,10 +25,9 @@ class AirportRepositoryImplTest extends BaseApplicationContextTest {
 
     @Test
     void whenNothingWasInsertedSelectAllShouldReturnEmptyList() {
-
         List<Airport> airports = airportRepository.selectAll();
 
-        assertThat(airports).isEmpty();
+        assertThat(airports, empty());
     }
 
     @Test
@@ -36,9 +37,7 @@ class AirportRepositoryImplTest extends BaseApplicationContextTest {
 
         List<Airport> airports = airportRepository.selectAll();
 
-        assertThat(airports)
-                .hasSize(1)
-                .contains(expectedAirport);
+        assertThat(airports, contains(expectedAirport));
     }
 
     @Test
@@ -50,8 +49,6 @@ class AirportRepositoryImplTest extends BaseApplicationContextTest {
 
         List<Airport> airports = airportRepository.selectAll();
 
-        assertThat(airports)
-                .hasSize(2)
-                .contains(expectedAirport, expectedAirport2);
+        assertThat(airports, contains(expectedAirport, expectedAirport2));
     }
 }

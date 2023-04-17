@@ -9,8 +9,7 @@ import org.mockito.Mockito;
 
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -47,6 +46,8 @@ class PassengerServiceImplTest {
         when(passengerMapper.passengerToPassengerDto(passenger)).thenReturn(passengerDto);
         List<PassengerDto> passengers = passengerService.getPassengers();
 
-        assertThat(passengers, contains(passengerDto));
+        assertThat(passengers)
+                .hasSize(1)
+                .contains(passengerDto);
     }
 }

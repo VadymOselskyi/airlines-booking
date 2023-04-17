@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
 
 class FlightRepositoryImplTest extends BaseApplicationContextTest {
 
@@ -21,7 +22,7 @@ class FlightRepositoryImplTest extends BaseApplicationContextTest {
     }
 
     @Test
-    void whenNothingWasInsertedThenSelectAllShouldReturnEmptyList(){
+    void whenNothingWasInsertedThenSelectAllShouldReturnEmptyList() {
         List<Flight> flights = flightRepository.selectAll();
 
         assertThat(flights, empty());
