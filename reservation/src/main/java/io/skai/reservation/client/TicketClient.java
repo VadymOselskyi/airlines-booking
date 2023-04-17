@@ -10,6 +10,6 @@ import java.util.List;
 @FeignClient(name = "tickets", url = "http://localhost:8081")
 public interface TicketClient {
 
-    @GetMapping("/api/tickets/user")
+    @GetMapping("/api/tickets")
     List<HistoryTicketDto> getHistoryTickets(@RequestParam("email") String email);
 }

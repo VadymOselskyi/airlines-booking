@@ -19,7 +19,7 @@ public class TicketController {
         ticketService.saveTicket(historicalTicketDto);
     }
 
-    @GetMapping("/user")
+    @GetMapping
     public List<HistoricalTicketDto> getTickets(@RequestParam String email) {
 
         return ticketService.getTickets(email);
