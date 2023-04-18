@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class AirportMapperTest {
 
-    Airport airport = new Airport(1L, "International Main", "UA", "Kyiv");
-    AirportDto airportDto = new AirportDto(1L, "International Main", "UA", "Kyiv");
+    private final Airport airport = new Airport(1L, "International Main", "UA", "Kyiv");
+    private final AirportDto airportDto = new AirportDto(1L, "International Main", "UA", "Kyiv");
 
     private final AirportMapper airportMapper = Mappers.getMapper(AirportMapper.class);
 
