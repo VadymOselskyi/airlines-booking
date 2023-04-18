@@ -10,21 +10,22 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TicketMapperTest {
-    private final Ticket TICKET = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
-    private final TicketDto TICKETDTO = new TicketDto(1L, 1L, 1L, new BigDecimal(120), "1B");
+    private final Ticket ticket = new Ticket(4L, 15L, 81L, new BigDecimal(120), "51B");
+    private final TicketDto ticketDto = new TicketDto(4L, 15L, 81L, new BigDecimal(120), "51B");
 
     private final TicketMapper ticketMapper = Mappers.getMapper(TicketMapper.class);
 
     @Test
     void whenInputTicketThenReturnTicketDto(){
-        TicketDto actualDto = ticketMapper.ticketToTicketDto(TICKET);
+        TicketDto actualDto = ticketMapper.ticketToTicketDto(ticket);
 
-        assertThat(actualDto).isEqualTo(TICKETDTO);
+        assertThat(actualDto).isEqualTo(ticketDto);
     }
+
     @Test
     void whenInputTicketDtoThenReturnTicket(){
-        Ticket actual = ticketMapper.ticketDtoToTicket(TICKETDTO);
+        Ticket actual = ticketMapper.ticketDtoToTicket(ticketDto);
 
-        assertThat(actual).isEqualTo(TICKET);
+        assertThat(actual).isEqualTo(ticket);
     }
 }

@@ -19,18 +19,18 @@ class HistoryTicketMapperTest {
 
     @Test
     void whenInputRequiredEntitiesThenReturnHistoryTicketDto() {
-        Airport LVIV_AIRPORT = new Airport(1L, "west", "UA", "Lviv");
-        Airport ODESA_AIRPORT = new Airport(2L, "south", "UA", "Odesa");
+        Airport lvivAirport = new Airport(1L, "west", "UA", "Lviv");
+        Airport odesaAirport = new Airport(2L, "south", "UA", "Odesa");
         Flight flight = new Flight(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
                 1L, LocalDateTime.of(2023, 4, 11, 8, 40), 2L);
         Passenger passenger = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
         Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
         HistoryTicketDto expectedDto = new HistoryTicketDto(passenger.getFirstName(), passenger.getLastName(),
                 passenger.getEmail(), passenger.getPhone(), ticket.getSeatNumber(), ticket.getPrice(),
-                flight.getDepartureDate(), LVIV_AIRPORT.getName(), LVIV_AIRPORT.getCountryCode(), LVIV_AIRPORT.getCity(),
-                flight.getArrivalDate(), ODESA_AIRPORT.getName(), ODESA_AIRPORT.getCountryCode(), ODESA_AIRPORT.getCity());
+                flight.getDepartureDate(), lvivAirport.getName(), lvivAirport.getCountryCode(), lvivAirport.getCity(),
+                flight.getArrivalDate(), odesaAirport.getName(), odesaAirport.getCountryCode(), odesaAirport.getCity());
 
-        HistoryTicketDto actualDto = ticketMapper.mapToDto(LVIV_AIRPORT, ODESA_AIRPORT, flight, passenger, ticket);
+        HistoryTicketDto actualDto = ticketMapper.mapToDto(lvivAirport, odesaAirport, flight, passenger, ticket);
 
         assertThat(actualDto).isEqualTo(expectedDto);
     }
