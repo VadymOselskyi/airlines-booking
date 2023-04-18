@@ -9,15 +9,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class AirportMapperTest {
 
+    Airport airport = new Airport(1L, "International Main", "UA", "Kyiv");
+    AirportDto airportDto = new AirportDto(1L, "International Main", "UA", "Kyiv");
+
     private final AirportMapper airportMapper = Mappers.getMapper(AirportMapper.class);
 
     @Test
     void whenInputAirportThenReturnRightAirportDto() {
-        Airport airport = new Airport(1L, "International Main", "UA", "Kyiv");
-        AirportDto expectedDto = new AirportDto(1L, "International Main", "UA", "Kyiv");
-
         AirportDto actualDto = airportMapper.airportToAirportDto(airport);
 
-        assertThat(expectedDto).isEqualTo(actualDto);
+        assertThat(airportDto).isEqualTo(actualDto);
     }
 }

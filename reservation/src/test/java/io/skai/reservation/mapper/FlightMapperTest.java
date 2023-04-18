@@ -16,7 +16,6 @@ class FlightMapperTest {
     private final FlightDto flightDto = new FlightDto(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
             LocalDateTime.of(2023, 4, 11, 8, 40), 1L, 2L);
 
-
     private final FlightMapper flightMapper = Mappers.getMapper(FlightMapper.class);
 
     @Test
