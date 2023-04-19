@@ -9,22 +9,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PassengerMapperTest {
 
-    private final Passenger passenger = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
-    private final PassengerDto passengerDto = new PassengerDto(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
+    private static final Passenger PASSENGER = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
+    private static final PassengerDto PASSENGER_DTO = new PassengerDto(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
 
     private final PassengerMapper passengerMapper = Mappers.getMapper(PassengerMapper.class);
 
     @Test
     void whenInputPassengerThenReturnPassengerDto() {
-        PassengerDto actualDto = passengerMapper.passengerToPassengerDto(passenger);
+        PassengerDto actualDto = passengerMapper.passengerToPassengerDto(PASSENGER);
 
-        assertThat(actualDto).isEqualTo(passengerDto);
+        assertThat(actualDto).isEqualTo(PASSENGER_DTO);
     }
 
     @Test
     void whenInputPassengerDtoThenReturnPassenger() {
-        Passenger actualPassenger = passengerMapper.passengerDtoToPassenger(passengerDto);
+        Passenger actualPassenger = passengerMapper.passengerDtoToPassenger(PASSENGER_DTO);
 
-        assertThat(actualPassenger).isEqualTo(passenger);
+        assertThat(actualPassenger).isEqualTo(PASSENGER);
     }
 }

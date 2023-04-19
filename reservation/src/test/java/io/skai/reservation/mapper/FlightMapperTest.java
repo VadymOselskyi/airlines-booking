@@ -11,24 +11,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class FlightMapperTest {
 
-    private final Flight flight = new Flight(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
+    private static final Flight FLIGHT = new Flight(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
             1L, LocalDateTime.of(2023, 4, 11, 8, 40), 2L);
-    private final FlightDto flightDto = new FlightDto(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
+    private static final FlightDto FLIGHT_DTO = new FlightDto(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
             LocalDateTime.of(2023, 4, 11, 8, 40), 1L, 2L);
 
     private final FlightMapper flightMapper = Mappers.getMapper(FlightMapper.class);
 
     @Test
     void whenInputFlightThenReturnFlightDto() {
-        FlightDto actualDto = flightMapper.flightToFlightDto(flight);
+        FlightDto actualDto = flightMapper.flightToFlightDto(FLIGHT);
 
-        assertThat(actualDto).isEqualTo(flightDto);
+        assertThat(actualDto).isEqualTo(FLIGHT_DTO);
     }
 
     @Test
     void whenInputFlightDtoThenReturnFlight() {
-        Flight actualFlight = flightMapper.flightDtoToFlight(flightDto);
+        Flight actualFlight = flightMapper.flightDtoToFlight(FLIGHT_DTO);
 
-        assertThat(actualFlight).isEqualTo(flight);
+        assertThat(actualFlight).isEqualTo(FLIGHT);
     }
 }

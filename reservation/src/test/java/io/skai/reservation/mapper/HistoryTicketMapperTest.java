@@ -15,23 +15,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class HistoryTicketMapperTest {
 
-    Airport lvivAirport = new Airport(1L, "Lviv International airport", "UA", "Lviv");
-    Airport odesaAirport = new Airport(2L, "Odesa Main airport", "UA", "Odesa");
-    Flight flight = new Flight(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
+    private static final Airport LVIV_AIRPORT = new Airport(1L, "Lviv International airport", "UA", "Lviv");
+    private static final Airport ODESA_AIRPORT = new Airport(2L, "Odesa Main airport", "UA", "Odesa");
+    private static final Flight FLIGHT = new Flight(1L, LocalDateTime.of(2023, 4, 11, 8, 40),
             1L, LocalDateTime.of(2023, 4, 11, 8, 40), 2L);
-    Passenger passenger = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
-    Ticket ticket = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
-    HistoryTicketDto expectedDto = new HistoryTicketDto(passenger.getFirstName(), passenger.getLastName(),
-            passenger.getEmail(), passenger.getPhone(), ticket.getSeatNumber(), ticket.getPrice(),
-            flight.getDepartureDate(), lvivAirport.getName(), lvivAirport.getCountryCode(), lvivAirport.getCity(),
-            flight.getArrivalDate(), odesaAirport.getName(), odesaAirport.getCountryCode(), odesaAirport.getCity());
+    private static final Passenger PASSENGER = new Passenger(1L, "Vadim", "Oselskyi", "vo@gmail.com", "+3806834232");
+    private static final Ticket TICKET = new Ticket(1L, 1L, 1L, new BigDecimal(120), "1B");
+    private static final HistoryTicketDto EXPECTED_DTO = new HistoryTicketDto(PASSENGER.getFirstName(), PASSENGER.getLastName(),
+            PASSENGER.getEmail(), PASSENGER.getPhone(), TICKET.getSeatNumber(), TICKET.getPrice(),
+            FLIGHT.getDepartureDate(), LVIV_AIRPORT.getName(), LVIV_AIRPORT.getCountryCode(), LVIV_AIRPORT.getCity(),
+            FLIGHT.getArrivalDate(), ODESA_AIRPORT.getName(), ODESA_AIRPORT.getCountryCode(), ODESA_AIRPORT.getCity());
 
     private final HistoryTicketMapper ticketMapper = Mappers.getMapper(HistoryTicketMapper.class);
 
     @Test
     void whenInputRequiredEntitiesThenReturnHistoryTicketDto() {
-        HistoryTicketDto actualDto = ticketMapper.mapToDto(lvivAirport, odesaAirport, flight, passenger, ticket);
+        HistoryTicketDto actualDto = ticketMapper.mapToDto(LVIV_AIRPORT, ODESA_AIRPORT, FLIGHT, PASSENGER, TICKET);
 
-        assertThat(actualDto).isEqualTo(expectedDto);
+        assertThat(actualDto).isEqualTo(EXPECTED_DTO);
     }
 }
