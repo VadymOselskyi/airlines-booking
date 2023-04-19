@@ -3,8 +3,8 @@ package io.skai.reservation.mapper;
 import io.skai.reservation.dto.HistoryTicketDto;
 import io.skai.reservation.jooq.tables.pojos.Airport;
 import io.skai.reservation.jooq.tables.pojos.Flight;
-import io.skai.reservation.jooq.tables.pojos.Passenger;
 import io.skai.reservation.jooq.tables.pojos.Ticket;
+import io.skai.reservation.model.Passenger;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
