@@ -10,6 +10,7 @@ dependencies {
     implementation libs.liquibase
     implementation libs.jooq
     implementation libs.jooqCodegen
+    implementation libs.persistancelayer
     implementation libs.feign
     implementation libs.mapstruct
     annotationProcessor libs.mapstructProcessor
