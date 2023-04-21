@@ -1,6 +1,9 @@
 package io.skai.reservation;
 
+import com.kenshoo.pl.entity.PersistenceLayer;
+import io.skai.reservation.pl.AirportEntity;
 import io.skai.reservation.repository.*;
+import io.skai.reservation.repository.impl.AirportPersistenceRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,4 +23,8 @@ public class BaseApplicationContextTest {
     protected FlightRepository flightRepository;
     @Autowired
     protected TicketRepository ticketRepository;
+    @Autowired
+    protected AirportPersistenceRepository airportPersistenceRepository;
+    @Autowired
+    protected PersistenceLayer<AirportEntity> persistenceLayer;
 }
