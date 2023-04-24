@@ -27,7 +27,7 @@ public class DatabaseConfig {
     }
 
     @Bean
-    public PersistenceLayer<AirportEntity> persistenceLayer() {
-        return new PersistenceLayer<>(plContext());
+    public PersistenceLayer<AirportEntity> persistenceLayer(PLContext plContext) {
+        return new PersistenceLayer<>(plContext);
     }
 }

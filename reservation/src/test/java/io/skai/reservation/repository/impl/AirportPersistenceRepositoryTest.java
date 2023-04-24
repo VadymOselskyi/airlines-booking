@@ -26,42 +26,38 @@ class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
 
     @Test
     void whenNothingWasInsertedSelectAllShouldReturnEmptyList() {
-        List<Airport> airports = airportPersistenceRepository.selectAll();
+        List<Airport> airports = airportPersistenceRepository.findAll();
 
         assertThat(airports, empty());
     }
 
     @Test
     void whenCreatedTwoAirportsThenGetAllShouldReturnThem() {
-        var cmd = new CreateAirportCommand();
-        cmd.set(NAME, KYIV_AIRPORT.getName());
-        cmd.set(COUNTRY_CODE, KYIV_AIRPORT.getCountryCode());
-        cmd.set(CITY, KYIV_AIRPORT.getCity());
-        var cmd2 = new CreateAirportCommand();
-        cmd2.set(NAME, BORYSPIL_AIRPORT.getName());
-        cmd2.set(COUNTRY_CODE, BORYSPIL_AIRPORT.getCountryCode());
-        cmd2.set(CITY, BORYSPIL_AIRPORT.getCity());
+        var createKyivCommand = createAirportCommand(KYIV_AIRPORT);
+        var createBoryspilCommand = createAirportCommand(BORYSPIL_AIRPORT);
 
-        airportPersistenceRepository.insert(List.of(cmd, cmd2));
-        List<Airport> airports = airportPersistenceRepository.selectAll();
+        airportPersistenceRepository.save(List.of(createKyivCommand, createBoryspilCommand));
+        List<Airport> airports = airportPersistenceRepository.findAll();
 
         assertThat(airports, containsInAnyOrder(KYIV_AIRPORT, BORYSPIL_AIRPORT));
     }
 
     @Test
     void whenCreatedTwoAirportsThenGetShouldReturnRightAirportById() {
-        var cmd = new CreateAirportCommand();
-        cmd.set(NAME, KYIV_AIRPORT.getName());
-        cmd.set(COUNTRY_CODE, KYIV_AIRPORT.getCountryCode());
-        cmd.set(CITY, KYIV_AIRPORT.getCity());
-        var cmd2 = new CreateAirportCommand();
-        cmd2.set(NAME, BORYSPIL_AIRPORT.getName());
-        cmd2.set(COUNTRY_CODE, BORYSPIL_AIRPORT.getCountryCode());
-        cmd2.set(CITY, BORYSPIL_AIRPORT.getCity());
+        var createKyivCommand = createAirportCommand(KYIV_AIRPORT);
+        var createBoryspilCommand = createAirportCommand(BORYSPIL_AIRPORT);
 
-        airportPersistenceRepository.insert(List.of(cmd, cmd2));
-        Airport airport = airportPersistenceRepository.selectOne(BORYSPIL_AIRPORT.getId());
+        airportPersistenceRepository.save(List.of(createKyivCommand, createBoryspilCommand));
+        Airport airport = airportPersistenceRepository.findOne(BORYSPIL_AIRPORT.getId());
 
         assertThat(airport, equalTo(BORYSPIL_AIRPORT));
+    }
+
+    private CreateAirportCommand createAirportCommand(Airport airport) {
+        var cmd = new CreateAirportCommand();
+        cmd.set(NAME, airport.getName());
+        cmd.set(COUNTRY_CODE, airport.getCountryCode());
+        cmd.set(CITY, airport.getCity());
+        return cmd;
     }
 }

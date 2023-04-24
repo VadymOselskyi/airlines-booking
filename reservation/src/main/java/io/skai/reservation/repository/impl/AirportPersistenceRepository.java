@@ -22,11 +22,11 @@ public class AirportPersistenceRepository {
         this.persistenceLayer = new PersistenceLayer<>(plContext);
     }
 
-    public void insert(Collection<CreateAirportCommand> commands) {
+    public void save(Collection<CreateAirportCommand> commands) {
         persistenceLayer.create(commands, flowBuilder().build());
     }
 
-    public List<Airport> selectAll() {
+    public List<Airport> findAll() {
         return plContext.select(ID, NAME, COUNTRY_CODE, CITY)
                 .from(INSTANCE)
                 .where(PLCondition.trueCondition())
@@ -36,7 +36,7 @@ public class AirportPersistenceRepository {
                 .toList();
     }
 
-    public Airport selectOne(long id) {
+    public Airport findOne(long id) {
         return plContext.select(ID, NAME, COUNTRY_CODE, CITY)
                 .from(INSTANCE)
                 .where(ID.eq(id))
