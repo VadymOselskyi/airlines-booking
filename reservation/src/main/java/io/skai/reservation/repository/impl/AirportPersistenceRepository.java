@@ -22,8 +22,12 @@ public class AirportPersistenceRepository {
         this.persistenceLayer = new PersistenceLayer<>(plContext);
     }
 
-    public void save(Collection<CreateAirportCommand> commands) {
-        persistenceLayer.create(commands, flowBuilder().build());
+    public List<Airport> save(Collection<CreateAirportCommand> commands) {
+        CreateResult<AirportEntity, Identifier<AirportEntity>> entityChangeResults = persistenceLayer.create(commands, flowBuilder().build());
+        return entityChangeResults.getChangeResults()
+                .stream()
+                .map(this::mapResultToAirport)
+                .toList();
     }
 
     public List<Airport> findAll() {
@@ -56,5 +60,13 @@ public class AirportPersistenceRepository {
                 currentEntityState.get(NAME),
                 currentEntityState.get(COUNTRY_CODE),
                 currentEntityState.get(CITY));
+    }
+
+    private Airport mapResultToAirport(EntityChangeResult<AirportEntity, Identifier<AirportEntity>, CreateEntityCommand<AirportEntity>> result) {
+        Long id = result.getCommand().get(ID);
+        String airportName = result.getCommand().get(NAME);
+        String countryCode = result.getCommand().get(COUNTRY_CODE);
+        String city = result.getCommand().get(CITY);
+        return new Airport(id, airportName, countryCode, city);
     }
 }

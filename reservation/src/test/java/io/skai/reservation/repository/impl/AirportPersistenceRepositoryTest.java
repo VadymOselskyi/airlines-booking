@@ -46,14 +46,15 @@ class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
     @Test
     void whenCreatedTwoAirportsThenFindOneShouldReturnRightAirportById() {
         var createKyivCommand = createAirportCommand(KYIV_AIRPORT);
-        createKyivCommand.set(ID, KYIV_AIRPORT.getId());
         var createBoryspilCommand = createAirportCommand(BORYSPIL_AIRPORT);
-        createBoryspilCommand.set(ID, BORYSPIL_AIRPORT.getId());
 
-        airportPersistenceRepository.save(List.of(createKyivCommand, createBoryspilCommand));
-        Airport airport = airportPersistenceRepository.findOne(BORYSPIL_AIRPORT.getId());
+        List<Airport> airports = airportPersistenceRepository.save(List.of(createKyivCommand, createBoryspilCommand));
 
-        assertThat(airport).isEqualTo(BORYSPIL_AIRPORT);
+        airports.forEach(expectedAirport -> {
+            Airport actualAirport = airportPersistenceRepository.findOne(expectedAirport.getId());
+
+            assertThat(expectedAirport).isEqualTo(actualAirport);
+        });
     }
 
     private CreateAirportCommand createAirportCommand(Airport airport) {
