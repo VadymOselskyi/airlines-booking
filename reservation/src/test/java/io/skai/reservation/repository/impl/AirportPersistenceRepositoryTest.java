@@ -58,10 +58,10 @@ class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
     }
 
     private CreateAirportCommand createAirportCommand(Airport airport) {
-        var cmd = new CreateAirportCommand();
-        cmd.set(NAME, airport.getName());
-        cmd.set(COUNTRY_CODE, airport.getCountryCode());
-        cmd.set(CITY, airport.getCity());
-        return cmd;
+        var command = new CreateAirportCommand();
+        command.set(NAME, airport.getName());
+        command.set(COUNTRY_CODE, airport.getCountryCode());
+        command.set(CITY, airport.getCity());
+        return command;
     }
 }
