@@ -19,7 +19,7 @@ public class DatabaseConfig {
     private final ConnectionProvider connectionProvider;
 
     @Bean
-    public PLContext defineJooq() {
+    public PLContext plContext() {
         DSLContext jooq = DSL.using(new DefaultConfiguration()
                 .set(SQLDialect.MYSQL)
                 .set(new ThreadLocalTransactionProvider(connectionProvider)));
@@ -28,6 +28,6 @@ public class DatabaseConfig {
 
     @Bean
     public PersistenceLayer<AirportEntity> persistenceLayer() {
-        return new PersistenceLayer<>(defineJooq());
+        return new PersistenceLayer<>(plContext());
     }
 }

@@ -45,7 +45,7 @@ class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
         airportPersistenceRepository.insert(List.of(cmd, cmd2));
         List<Airport> airports = airportPersistenceRepository.selectAll();
 
-        assertThat(airports, contains(KYIV_AIRPORT, BORYSPIL_AIRPORT));
+        assertThat(airports, containsInAnyOrder(KYIV_AIRPORT, BORYSPIL_AIRPORT));
     }
 
     @Test

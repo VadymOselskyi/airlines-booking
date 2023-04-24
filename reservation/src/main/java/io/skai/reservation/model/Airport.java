@@ -2,12 +2,9 @@ package io.skai.reservation.model;
 
 import lombok.*;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
 public class Airport {
 
     private Long id;

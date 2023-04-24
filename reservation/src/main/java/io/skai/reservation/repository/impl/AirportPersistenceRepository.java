@@ -4,14 +4,14 @@ import com.kenshoo.pl.entity.*;
 import io.skai.reservation.model.Airport;
 import io.skai.reservation.pl.AirportEntity;
 import io.skai.reservation.pl.command.CreateAirportCommand;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
 
 import static io.skai.reservation.pl.AirportEntity.*;
 
-@Component
+@Repository
 public class AirportPersistenceRepository {
 
     private final PersistenceLayer<AirportEntity> persistenceLayer;
