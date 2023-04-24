@@ -10,8 +10,7 @@ import java.util.List;
 
 import static io.skai.reservation.jooq.Tables.AIRPORT;
 import static io.skai.reservation.pl.AirportEntity.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
 
@@ -25,32 +24,36 @@ class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
     }
 
     @Test
-    void whenNothingWasInsertedSelectAllShouldReturnEmptyList() {
+    void whenNothingWasInsertedFindAllShouldReturnEmptyList() {
         List<Airport> airports = airportPersistenceRepository.findAll();
 
-        assertThat(airports, empty());
+        assertThat(airports).isEmpty();
     }
 
     @Test
-    void whenCreatedTwoAirportsThenGetAllShouldReturnThem() {
+    void whenCreatedTwoAirportsThenFindAllShouldReturnThem() {
         var createKyivCommand = createAirportCommand(KYIV_AIRPORT);
         var createBoryspilCommand = createAirportCommand(BORYSPIL_AIRPORT);
 
         airportPersistenceRepository.save(List.of(createKyivCommand, createBoryspilCommand));
         List<Airport> airports = airportPersistenceRepository.findAll();
 
-        assertThat(airports, containsInAnyOrder(KYIV_AIRPORT, BORYSPIL_AIRPORT));
+        assertThat(airports).hasSize(2)
+                .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
+                .contains(KYIV_AIRPORT, BORYSPIL_AIRPORT);
     }
 
     @Test
-    void whenCreatedTwoAirportsThenGetShouldReturnRightAirportById() {
+    void whenCreatedTwoAirportsThenFindOneShouldReturnRightAirportById() {
         var createKyivCommand = createAirportCommand(KYIV_AIRPORT);
+        createKyivCommand.set(ID, KYIV_AIRPORT.getId());
         var createBoryspilCommand = createAirportCommand(BORYSPIL_AIRPORT);
+        createBoryspilCommand.set(ID, BORYSPIL_AIRPORT.getId());
 
         airportPersistenceRepository.save(List.of(createKyivCommand, createBoryspilCommand));
         Airport airport = airportPersistenceRepository.findOne(BORYSPIL_AIRPORT.getId());
 
-        assertThat(airport, equalTo(BORYSPIL_AIRPORT));
+        assertThat(airport).isEqualTo(BORYSPIL_AIRPORT);
     }
 
     private CreateAirportCommand createAirportCommand(Airport airport) {
