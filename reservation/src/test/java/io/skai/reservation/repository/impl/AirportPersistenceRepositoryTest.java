@@ -38,9 +38,9 @@ class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
         airportPersistenceRepository.save(List.of(createKyivCommand, createBoryspilCommand));
         List<Airport> airports = airportPersistenceRepository.findAll();
 
-        assertThat(airports).hasSize(2)
+        assertThat(airports)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
-                .contains(KYIV_AIRPORT, BORYSPIL_AIRPORT);
+                .containsExactlyInAnyOrder(KYIV_AIRPORT, BORYSPIL_AIRPORT);
     }
 
     @Test
@@ -52,7 +52,6 @@ class AirportPersistenceRepositoryTest extends BaseApplicationContextTest {
 
         airports.forEach(expectedAirport -> {
             Airport actualAirport = airportPersistenceRepository.findOne(expectedAirport.getId());
-
             assertThat(expectedAirport).isEqualTo(actualAirport);
         });
     }
