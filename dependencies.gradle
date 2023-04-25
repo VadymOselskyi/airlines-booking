@@ -13,6 +13,7 @@ ext.libs = [
         'jooqCodegen'         : "org.jooq:jooq-codegen:3.17.10",
         'devTools'            : "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
         'dataJdbc'            : "org.springframework.boot:spring-boot-starter-data-jdbc:${springBootVersion}",
+        'persistencelayer'    : "com.kenshoo:persistence-layer:0.1.116-jooq-3.16.3",
         'feign'               : "org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1",
         'mapstruct'           : "org.mapstruct:mapstruct:$mapstructVersion",
         'mapstructProcessor'  : "org.mapstruct:mapstruct-processor:$mapstructVersion",
