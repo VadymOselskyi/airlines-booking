@@ -8,6 +8,7 @@ dependencies {
     implementation libs.mapstruct
     annotationProcessor libs.mapstructProcessor
     implementation libs.liquibase
+    implementation libs.kafka
 
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ

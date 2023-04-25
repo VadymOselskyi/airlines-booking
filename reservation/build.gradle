@@ -15,6 +15,7 @@ dependencies {
     implementation libs.mapstruct
     annotationProcessor libs.mapstructProcessor
     implementation libs.redis
+    implementation libs.kafka
 
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ

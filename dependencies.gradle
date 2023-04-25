@@ -17,8 +17,8 @@ ext.libs = [
         'feign'               : "org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1",
         'mapstruct'           : "org.mapstruct:mapstruct:$mapstructVersion",
         'mapstructProcessor'  : "org.mapstruct:mapstruct-processor:$mapstructVersion",
-        'redis'               : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
-
+        'redis'               : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
+        'kafka'               : "org.springframework.kafka:spring-kafka:${springBootVersion}"
 ]
 
 ext.libsTest = [
