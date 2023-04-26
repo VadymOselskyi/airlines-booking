@@ -1,7 +1,6 @@
 package io.skai.historicaldata.kafka;
 
 import io.skai.historicaldata.dto.HistoricalTicketDto;
-import io.skai.historicaldata.exception.TicketWasNotSavedException;
 import io.skai.historicaldata.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +18,8 @@ public class TicketListener {
     public void listen(HistoricalTicketDto dto) {
         try {
             ticketService.saveTicket(dto);
-        } catch (TicketWasNotSavedException exception) {
-            log.warn(exception.getMessage(), exception);
+        } catch (Exception exception) {
+            log.error("Ticket was not saved", exception);
         }
     }
 }

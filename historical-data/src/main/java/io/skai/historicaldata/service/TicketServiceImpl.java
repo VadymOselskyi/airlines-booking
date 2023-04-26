@@ -1,12 +1,10 @@
 package io.skai.historicaldata.service;
 
 import io.skai.historicaldata.dto.HistoricalTicketDto;
-import io.skai.historicaldata.exception.TicketWasNotSavedException;
 import io.skai.historicaldata.mapper.TicketMapper;
 import io.skai.historicaldata.model.HistoricalTicket;
 import io.skai.historicaldata.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,12 +26,6 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public HistoricalTicketDto saveTicket(HistoricalTicketDto ticketDto) {
         HistoricalTicket historicalTicket = ticketMapper.historicalTicketDtoToHistoricalTicket(ticketDto);
-        HistoricalTicket ticket;
-        try {
-            ticket = ticketRepository.save(historicalTicket);
-        } catch (IllegalArgumentException | OptimisticLockingFailureException exception){
-            throw new TicketWasNotSavedException("Ticket is null or uses optimistic locking");
-        }
-        return ticketMapper.historicalTicketToHistoricalTicketDto(ticket);
+        return ticketMapper.historicalTicketToHistoricalTicketDto(ticketRepository.save(historicalTicket));
     }
 }
