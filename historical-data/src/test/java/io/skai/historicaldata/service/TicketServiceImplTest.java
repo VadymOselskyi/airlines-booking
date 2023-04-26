@@ -1,6 +1,7 @@
 package io.skai.historicaldata.service;
 
 import io.skai.historicaldata.dto.HistoricalTicketDto;
+import io.skai.historicaldata.exception.TicketWasNotSavedException;
 import io.skai.historicaldata.mapper.TicketMapper;
 import io.skai.historicaldata.model.HistoricalTicket;
 import io.skai.historicaldata.repository.TicketRepository;
@@ -12,8 +13,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.mockito.Mockito.*;
 
 class TicketServiceImplTest {
 
@@ -62,5 +63,14 @@ class TicketServiceImplTest {
 
         verify(ticketRepository).save(TICKET);
         verify(ticketMapper).historicalTicketDtoToHistoricalTicket(TICKETDTO);
+    }
+
+    @Test
+    void whenInputDtoIsNullThenThrowException() {
+        when(ticketRepository.save(null)).thenThrow(new IllegalArgumentException());
+
+        assertThatThrownBy(() -> ticketService.saveTicket(null))
+                .isInstanceOf(TicketWasNotSavedException.class)
+                .hasMessage("Ticket is null or uses optimistic locking");
     }
 }
