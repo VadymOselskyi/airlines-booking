@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class Listener {
+public class TicketListener {
 
     private final TicketService ticketService;
 
-    @KafkaListener(topics = "ticket_topic", groupId = "groupId")
+    @KafkaListener(topics = "${spring.kafka.topic}", groupId = "${spring.kafka.group-id}")
     public void listen(HistoricalTicketDto dto) {
         ticketService.saveTicket(dto);
     }
