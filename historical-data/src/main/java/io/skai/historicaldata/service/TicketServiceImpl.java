@@ -32,7 +32,7 @@ public class TicketServiceImpl implements TicketService {
         try {
             ticket = ticketRepository.save(historicalTicket);
         } catch (IllegalArgumentException | OptimisticLockingFailureException exception){
-            throw new TicketWasNotSavedException("Ticket wasn't saved into history database");
+            throw new TicketWasNotSavedException("Ticket is null or uses optimistic locking");
         }
         return ticketMapper.historicalTicketToHistoricalTicketDto(ticket);
     }
