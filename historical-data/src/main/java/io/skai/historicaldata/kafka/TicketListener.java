@@ -19,7 +19,7 @@ public class TicketListener {
         try {
             ticketService.saveTicket(dto);
         } catch (Exception exception) {
-            log.error("Historical Ticket was not saved: {}", dto, exception);
+            log.error("HistoricalTicket was not saved: {}", dto, exception);
         }
     }
 }
