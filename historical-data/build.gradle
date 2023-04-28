@@ -9,9 +9,9 @@ dependencies {
     annotationProcessor libs.mapstructProcessor
     implementation libs.liquibase
     implementation libs.kafka
-    implementation libs.awaitility
 
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ
     testImplementation libsTest.hamcrest
+    testImplementation libs.awaitility
 }
