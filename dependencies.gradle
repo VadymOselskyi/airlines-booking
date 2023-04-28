@@ -18,7 +18,8 @@ ext.libs = [
         'mapstruct'           : "org.mapstruct:mapstruct:$mapstructVersion",
         'mapstructProcessor'  : "org.mapstruct:mapstruct-processor:$mapstructVersion",
         'redis'               : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
-        'kafka'               : "org.springframework.kafka:spring-kafka:${springBootVersion}"
+        'kafka'               : "org.springframework.kafka:spring-kafka:${springBootVersion}",
+        'awaitility'        : "org.awaitility:awaitility:4.2.0"
 ]
 
 ext.libsTest = [
