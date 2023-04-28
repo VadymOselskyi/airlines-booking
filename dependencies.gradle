@@ -19,7 +19,8 @@ ext.libs = [
         'mapstructProcessor'   : "org.mapstruct:mapstruct-processor:$mapstructVersion",
         'redis'                : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
         'kafka'                : "org.springframework.kafka:spring-kafka:${springBootVersion}",
-        'springConfigProcessor': "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+        'springConfigProcessor': "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}",
+        'persistencelayer'     : "com.kenshoo:persistence-layer:0.1.116-jooq-3.16.3"
 ]
 
 ext.libsTest = [
