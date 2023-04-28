@@ -16,6 +16,7 @@ dependencies {
     annotationProcessor libs.mapstructProcessor
     implementation libs.redis
     implementation libs.kafka
+    annotationProcessor libs.springConfigProcessor
 
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ
@@ -34,4 +35,3 @@ buildscript {
 }
 
 apply from: "$rootProject.projectDir/jooq.gradle"
-
