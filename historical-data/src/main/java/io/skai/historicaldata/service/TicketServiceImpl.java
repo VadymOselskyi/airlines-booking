@@ -18,7 +18,6 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<HistoricalTicketDto> getTickets(String email) {
-
         return ticketRepository.findAll(email).stream()
                 .map(ticketMapper::historicalTicketToHistoricalTicketDto)
                 .toList();
