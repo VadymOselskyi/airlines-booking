@@ -19,7 +19,7 @@ public class TicketListener {
         try {
             ticketService.saveTicket(dto);
         } catch (Exception exception) {
-            log.error("Ticket: {} was not saved" , dto, exception);
+            log.error("{} was not saved" , dto, exception);
         }
     }
 }
