@@ -25,7 +25,7 @@ public class KafkaConsumerConfig {
     private String groupId;
 
     @Bean
-    public ConsumerFactory<String, HistoricalTicketDto> consumerFactory() {
+    public ConsumerFactory<String, ?> consumerFactory() {
         Map<String, Object> props = Map.of(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress,
                 ConsumerConfig.GROUP_ID_CONFIG, groupId,
@@ -35,9 +35,8 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, HistoricalTicketDto> kafkaListenerContainerFactory(ConsumerFactory<String, HistoricalTicketDto> consumerFactory) {
-        ConcurrentKafkaListenerContainerFactory<String, HistoricalTicketDto> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(ConsumerFactory<String, Object> consumerFactory) {
+        ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         return factory;
     }
