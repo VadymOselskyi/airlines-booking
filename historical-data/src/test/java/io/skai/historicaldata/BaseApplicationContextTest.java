@@ -1,5 +1,6 @@
 package io.skai.historicaldata;
 
+import io.skai.historicaldata.kafka.KafkaProperties;
 import io.skai.historicaldata.kafka.TicketListener;
 import io.skai.historicaldata.repository.TicketRepository;
 import io.skai.historicaldata.service.TicketService;
@@ -19,4 +20,7 @@ public class BaseApplicationContextTest {
 
     @Autowired
     protected TicketListener ticketListener;
+
+    @Autowired
+    protected KafkaProperties kafkaProperties;
 }

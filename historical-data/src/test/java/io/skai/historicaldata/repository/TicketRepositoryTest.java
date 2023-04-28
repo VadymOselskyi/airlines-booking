@@ -30,7 +30,6 @@ class TicketRepositoryTest extends BaseApplicationContextTest {
     }
 
     private static HistoricalTicket createHistoricalTicket() {
-
         return new HistoricalTicket(null, "FName", "LName", "email@gmail.com",
                 "123", "B12", new BigDecimal("123.00"),
                 LocalDateTime.of(2023, 4, 17, 14, 20),

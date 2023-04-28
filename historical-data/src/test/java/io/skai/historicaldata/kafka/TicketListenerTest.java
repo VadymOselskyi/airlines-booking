@@ -7,7 +7,6 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -25,11 +24,6 @@ import static org.awaitility.Awaitility.await;
 class TicketListenerTest extends BaseApplicationContextTest {
 
     private static final HistoricalTicketDto TICKET_DTO = createHistoricalTicketDto();
-
-    @Value("${spring.kafka.topic}")
-    private String topic;
-    @Value("${spring.kafka.bootstrap-servers}")
-    private String servers;
 
     @AfterEach
     void tearDown() {
@@ -52,14 +46,14 @@ class TicketListenerTest extends BaseApplicationContextTest {
 
     private ProducerFactory<String, Object> createProducer() {
         Map<String, Object> configProps = Map.of(
-                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, servers,
+                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootStrapServers(),
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class,
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
     private NewTopic ticketTopic() {
-        return TopicBuilder.name(topic).build();
+        return TopicBuilder.name(kafkaProperties.getTopic()).build();
     }
 
     private static HistoricalTicketDto createHistoricalTicketDto() {

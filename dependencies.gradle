@@ -2,28 +2,29 @@ def springBootVersion = '3.0.5'
 def mapstructVersion = '1.5.3.Final'
 
 ext.libs = [
-        'springBoot'          : "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
-        'jpa'                 : "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}",
-        'lombok'              : "org.projectlombok:lombok:1.18.24",
-        'openApi'             : "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4",
-        'mysql'               : "mysql:mysql-connector-java:8.0.32",
-        'springBootValidation': "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}",
-        'liquibase'           : "org.liquibase:liquibase-core:4.20.0",
-        'jooq'                : "org.springframework.boot:spring-boot-starter-jooq:${springBootVersion}",
-        'jooqCodegen'         : "org.jooq:jooq-codegen:3.17.10",
-        'devTools'            : "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
-        'dataJdbc'            : "org.springframework.boot:spring-boot-starter-data-jdbc:${springBootVersion}",
-        'persistencelayer'    : "com.kenshoo:persistence-layer:0.1.116-jooq-3.16.3",
-        'feign'               : "org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1",
-        'mapstruct'           : "org.mapstruct:mapstruct:$mapstructVersion",
-        'mapstructProcessor'  : "org.mapstruct:mapstruct-processor:$mapstructVersion",
-        'redis'               : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
-        'kafka'               : "org.springframework.kafka:spring-kafka:${springBootVersion}",
-        'awaitility'          : "org.awaitility:awaitility:4.2.0"
+        'springBoot'           : "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+        'jpa'                  : "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}",
+        'lombok'               : "org.projectlombok:lombok:1.18.24",
+        'openApi'              : "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4",
+        'mysql'                : "mysql:mysql-connector-java:8.0.32",
+        'springBootValidation' : "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}",
+        'liquibase'            : "org.liquibase:liquibase-core:4.20.0",
+        'jooq'                 : "org.springframework.boot:spring-boot-starter-jooq:${springBootVersion}",
+        'jooqCodegen'          : "org.jooq:jooq-codegen:3.17.10",
+        'devTools'             : "org.springframework.boot:spring-boot-devtools:${springBootVersion}",
+        'dataJdbc'             : "org.springframework.boot:spring-boot-starter-data-jdbc:${springBootVersion}",
+        'persistencelayer'     : "com.kenshoo:persistence-layer:0.1.116-jooq-3.16.3",
+        'feign'                : "org.springframework.cloud:spring-cloud-starter-openfeign:4.0.1",
+        'mapstruct'            : "org.mapstruct:mapstruct:$mapstructVersion",
+        'mapstructProcessor'   : "org.mapstruct:mapstruct-processor:$mapstructVersion",
+        'redis'                : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
+        'kafka'                : "org.springframework.kafka:spring-kafka:${springBootVersion}",
+        'springConfigProcessor': "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
 ]
 
 ext.libsTest = [
         'springTest': "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
         'assertJ'   : 'org.assertj:assertj-core:3.24.2',
-        'hamcrest'  : 'org.hamcrest:hamcrest:2.2'
+        'hamcrest'  : 'org.hamcrest:hamcrest:2.2',
+        'awaitility': "org.awaitility:awaitility:4.2.0"
 ]
