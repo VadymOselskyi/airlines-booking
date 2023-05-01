@@ -13,4 +13,5 @@ public class KafkaProperties {
     private String topic;
     private String bootStrapServers;
     private String groupId;
+    private String offset;
 }

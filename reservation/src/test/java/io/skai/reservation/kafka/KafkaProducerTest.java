@@ -22,7 +22,7 @@ class KafkaProducerTest extends BaseApplicationContextTest {
     private static final HistoryTicketDto HISTORY_TICKET_DTO = createHistoryTicketDto();
 
     @Test
-    void firstProducerTest() {
+    void whenProducerSendMessageThenConsumerShouldConsumeThem() {
         Consumer<String, HistoryTicketDto> kafkaConsumer = createKafkaConsumer().createConsumer();
         kafkaConsumer.subscribe(Collections.singleton(kafkaProperties.getTopic()));
         kafkaProducer.sendMessage(HISTORY_TICKET_DTO);
@@ -40,7 +40,7 @@ class KafkaProducerTest extends BaseApplicationContextTest {
                 ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getGroupId(),
                 ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
-                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"),
+                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaProperties.getOffset()),
                 new StringDeserializer(),
                 new JsonDeserializer<>(HistoryTicketDto.class));
     }
