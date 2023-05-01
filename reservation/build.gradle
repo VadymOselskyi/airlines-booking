@@ -21,6 +21,7 @@ dependencies {
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ
     testImplementation libsTest.hamcrest
+    testImplementation libsTest.kafkaTest
 }
 buildscript {
     repositories {
