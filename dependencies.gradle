@@ -19,13 +19,13 @@ ext.libs = [
         'mapstructProcessor'   : "org.mapstruct:mapstruct-processor:$mapstructVersion",
         'redis'                : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
         'kafka'                : "org.springframework.kafka:spring-kafka:${springBootVersion}",
-        'springConfigProcessor': "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}",
-        'persistencelayer'     : "com.kenshoo:persistence-layer:0.1.116-jooq-3.16.3"
+        'springConfigProcessor': "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
 ]
 
 ext.libsTest = [
         'springTest': "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
         'assertJ'   : 'org.assertj:assertj-core:3.24.2',
         'hamcrest'  : 'org.hamcrest:hamcrest:2.2',
-        'awaitility': "org.awaitility:awaitility:4.2.0"
+        'awaitility': "org.awaitility:awaitility:4.2.0",
+        'kafkaTest' : "org.springframework.kafka:spring-kafka-test:${springBootVersion}"
 ]

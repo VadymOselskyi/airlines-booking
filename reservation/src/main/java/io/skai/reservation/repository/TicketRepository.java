@@ -9,4 +9,6 @@ public interface TicketRepository {
     Ticket insert(Ticket ticket);
 
     List<Ticket> selectAll();
+
+    List<Ticket> getTicketByFlightExpiredDateTime();
 }
