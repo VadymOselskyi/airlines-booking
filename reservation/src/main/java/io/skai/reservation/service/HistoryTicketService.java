@@ -4,7 +4,7 @@ import io.skai.reservation.dto.HistoryTicketDto;
 
 import java.util.List;
 
-public interface DbArchiveService {
+public interface HistoryTicketService {
 
-    List<HistoryTicketDto> getForArchive();
+    List<HistoryTicketDto> prepareHistory();
 }

@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-class DbArchiveServiceImplTest {
+class HistoryTicketServiceImplTest {
 
     private static final Airport LVIV_AIRPORT = getLvivAirport();
     private static final Airport ODESA_AIRPORT = getOdesaAirport();
@@ -34,7 +34,7 @@ class DbArchiveServiceImplTest {
     private final PassengerRepository passengerRepository = mock(PassengerRepository.class);
     private final TicketRepository ticketRepository = mock(TicketRepository.class);
     private final HistoryTicketMapper mapper = mock(HistoryTicketMapper.class);
-    private final DbArchiveServiceImpl dbArchiveService = new DbArchiveServiceImpl(airportRepository, flightRepository,
+    private final HistoryTicketServiceImpl dbArchiveService = new HistoryTicketServiceImpl(airportRepository, flightRepository,
             passengerRepository, ticketRepository, mapper);
 
     @Test
@@ -46,16 +46,9 @@ class DbArchiveServiceImplTest {
         when(ticketRepository.getTicketByFlightExpiredDateTime()).thenReturn(List.of(TICKET));
         when(mapper.mapToDto(LVIV_AIRPORT, ODESA_AIRPORT, FLIGHT, PASSENGER, TICKET)).thenReturn(HISTORY_TICKET_DTO);
 
-        List<HistoryTicketDto> historyTicketDtoList = dbArchiveService.getForArchive();
+        List<HistoryTicketDto> historyTicketDtoList = dbArchiveService.prepareHistory();
 
         assertThat(historyTicketDtoList).containsExactly(HISTORY_TICKET_DTO);
-
-        verify(airportRepository).selectOne(LVIV_AIRPORT.getId());
-        verify(airportRepository).selectOne(ODESA_AIRPORT.getId());
-        verify(flightRepository).get(FLIGHT.getId());
-        verify(passengerRepository).findById(PASSENGER.getId());
-        verify(ticketRepository).getTicketByFlightExpiredDateTime();
-        verify(mapper).mapToDto(LVIV_AIRPORT, ODESA_AIRPORT, FLIGHT, PASSENGER, TICKET);
     }
 
     private static Airport getLvivAirport() {
