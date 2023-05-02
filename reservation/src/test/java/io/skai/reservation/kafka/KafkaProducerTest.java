@@ -2,18 +2,11 @@ package io.skai.reservation.kafka;
 
 import io.skai.reservation.BaseApplicationContextTest;
 import io.skai.reservation.dto.HistoryTicketDto;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.Test;
-import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
-import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,27 +15,13 @@ class KafkaProducerTest extends BaseApplicationContextTest {
     private static final HistoryTicketDto HISTORY_TICKET_DTO = createHistoryTicketDto();
 
     @Test
-    void whenProducerSendMessageThenConsumerShouldConsumeThem() {
-        Consumer<String, HistoryTicketDto> kafkaConsumer = createKafkaConsumer().createConsumer();
-        kafkaConsumer.subscribe(Collections.singleton(kafkaProperties.getTopic()));
+    void whenProducerSendMessageThenConsumerShouldConsumeThem() throws InterruptedException {
         kafkaProducer.sendMessage(HISTORY_TICKET_DTO);
 
-        HistoryTicketDto historyTicketDto = KafkaTestUtils
-                .getSingleRecord(kafkaConsumer, kafkaProperties.getTopic())
-                .value();
+        boolean consumedMessage = testListener.getLatch().await(7, TimeUnit.SECONDS);
 
-        assertThat(historyTicketDto).isEqualTo(HISTORY_TICKET_DTO);
-    }
-
-    private DefaultKafkaConsumerFactory<String, HistoryTicketDto> createKafkaConsumer() {
-        return new DefaultKafkaConsumerFactory<>(Map.of(
-                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootStrapServers(),
-                ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getGroupId(),
-                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
-                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
-                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaProperties.getOffset()),
-                new StringDeserializer(),
-                new JsonDeserializer<>(HistoryTicketDto.class));
+        assertThat(consumedMessage).isTrue();
+        assertThat(testListener.getTicketDto()).isEqualTo(HISTORY_TICKET_DTO);
     }
 
     private static HistoryTicketDto createHistoryTicketDto() {

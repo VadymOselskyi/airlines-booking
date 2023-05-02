@@ -33,4 +33,6 @@ public class BaseApplicationContextTest {
     protected KafkaProducer kafkaProducer;
     @Autowired
     protected KafkaProperties kafkaProperties;
+    @Autowired
+    protected TestListener testListener;
 }
