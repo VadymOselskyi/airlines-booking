@@ -10,21 +10,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class SaveHistoryJob implements Job {
 
+    @Autowired
     private HistoryTicketService historyTicketService;
+    @Autowired
     private KafkaProducer kafkaProducer;
 
     @Override
     public void execute(JobExecutionContext context) {
+        System.out.println("Quartz!!!");
         historyTicketService.prepareHistory().forEach(kafkaProducer::sendMessage);
-    }
-
-    @Autowired
-    public void setHistoryTicketService(HistoryTicketService historyTicketService) {
-        this.historyTicketService = historyTicketService;
-    }
-
-    @Autowired
-    public void setKafkaProducer(KafkaProducer kafkaProducer) {
-        this.kafkaProducer = kafkaProducer;
     }
 }
