@@ -10,12 +10,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
 import javax.sql.DataSource;
+import java.text.ParseException;
 
 @Configuration
 @RequiredArgsConstructor
@@ -34,12 +35,13 @@ public class QuartzConfig {
     }
 
     @Bean
-    public SimpleTriggerFactoryBean trigger(JobDetail jobDetail) {
-        SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
-        trigger.setJobDetail(jobDetail);
-        trigger.setRepeatInterval(3600000);
-        trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
-        return trigger;
+    public CronTriggerFactoryBean trigger(JobDetail jobDetail) throws ParseException {
+        CronTriggerFactoryBean cronTriggerFactory = new CronTriggerFactoryBean();
+        cronTriggerFactory.setJobDetail(jobDetail);
+        cronTriggerFactory.setCronExpression("0 0 0/1 1/1 * ? *");
+        cronTriggerFactory.setMisfireInstruction(SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW);
+        cronTriggerFactory.afterPropertiesSet();
+        return cronTriggerFactory;
     }
 
     @Bean
