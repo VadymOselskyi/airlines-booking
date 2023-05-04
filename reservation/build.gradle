@@ -17,6 +17,7 @@ dependencies {
     implementation libs.redis
     implementation libs.kafka
     annotationProcessor libs.springConfigProcessor
+    implementation libs.quartz
 
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ
