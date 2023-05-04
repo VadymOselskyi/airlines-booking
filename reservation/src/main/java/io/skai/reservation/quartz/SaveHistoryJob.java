@@ -17,7 +17,6 @@ public class SaveHistoryJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) {
-        System.out.println("Quartz!!!");
         historyTicketService.prepareHistory().forEach(kafkaProducer::sendMessage);
     }
 }
