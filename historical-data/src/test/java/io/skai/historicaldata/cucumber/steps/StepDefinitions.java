@@ -11,6 +11,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.assertj.core.api.Assertions;
 import org.awaitility.Awaitility;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 
 public class StepDefinitions extends SpringIntegrationTest {
 
+    @Value("${cucumber.url}")
+    private String getTicketsUrl;
     ResponseEntity<List<HistoricalTicketDto>> lastResponse;
 
     @Given("create tickets")
@@ -33,14 +36,15 @@ public class StepDefinitions extends SpringIntegrationTest {
         dtos.forEach(dto -> kafkaTemplate().send(ticketTopic().name(), dto));
     }
 
-    @And("wait some seconds")
-    public void waiting() {
-        Awaitility.await().atMost(10, TimeUnit.SECONDS);
+    @And("wait {int} seconds")
+    public void waiting(int pause) {
+        Awaitility.await().atMost(pause, TimeUnit.SECONDS);
     }
 
     @When("^client get tickets$")
     public void whenClientCallsGetTickets() {
-        lastResponse = testRestTemplate.exchange("localhost:8081/api/tickets/user?email=ironman@gmail.com", HttpMethod.GET, null, new ParameterizedTypeReference<>() {
+        lastResponse = testRestTemplate
+                .exchange(getTicketsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<>() {
         });
     }
 
