@@ -10,9 +10,13 @@ dependencies {
     implementation libs.liquibase
     implementation libs.kafka
     annotationProcessor libs.springConfigProcessor
+    implementation libsTest.cucumberJava
+    implementation libsTest.cucumberSpring
 
     testImplementation libsTest.springTest
     testImplementation libsTest.assertJ
     testImplementation libsTest.hamcrest
     testImplementation libsTest.awaitility
+    testImplementation libsTest.cucumberJunit
+    testImplementation libsTest.junitSuite
 }

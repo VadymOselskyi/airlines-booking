@@ -1,7 +1,7 @@
 package io.skai.reservation;
 
 import com.kenshoo.pl.entity.PersistenceLayer;
-import io.skai.reservation.kafka.KafkaProducer;
+import io.skai.reservation.kafka.HistoryTicketKafkaProducer;
 import io.skai.reservation.kafka.config.KafkaProperties;
 import io.skai.reservation.pl.AirportEntity;
 import io.skai.reservation.repository.*;
@@ -30,7 +30,7 @@ public class BaseApplicationContextTest {
     @Autowired
     protected PersistenceLayer<AirportEntity> persistenceLayer;
     @Autowired
-    protected KafkaProducer kafkaProducer;
+    protected HistoryTicketKafkaProducer historyTicketKafkaProducer;
     @Autowired
     protected KafkaProperties kafkaProperties;
     @Autowired

@@ -1,6 +1,6 @@
 package io.skai.reservation.quartz;
 
-import io.skai.reservation.kafka.KafkaProducer;
+import io.skai.reservation.kafka.HistoryTicketKafkaProducer;
 import io.skai.reservation.service.HistoryTicketService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -13,10 +13,10 @@ public class SaveHistoryJob implements Job {
     @Autowired
     private HistoryTicketService historyTicketService;
     @Autowired
-    private KafkaProducer kafkaProducer;
+    private HistoryTicketKafkaProducer historyTicketKafkaProducer;
 
     @Override
     public void execute(JobExecutionContext context) {
-        historyTicketService.prepareHistory().forEach(kafkaProducer::sendMessage);
+        historyTicketService.prepareHistory().forEach(historyTicketKafkaProducer::sendMessage);
     }
 }
