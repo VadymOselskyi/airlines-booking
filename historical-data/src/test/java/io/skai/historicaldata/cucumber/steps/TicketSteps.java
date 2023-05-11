@@ -35,7 +35,7 @@ public class TicketSteps extends SpringIntegrationTest {
         Thread.sleep(pause * 1000L);
     }
 
-    @Then("client can get all Tickets by {string}")
+    @Then("client can get all Tickets by email: {string}")
     public void theClientReceiveListOfAirportDto(String email, List<HistoricalTicketDto> airportDtos) {
         List<HistoricalTicketDto> historyTickets = ticketClient.getHistoryTickets(email);
         Assertions.assertThat(historyTickets)
