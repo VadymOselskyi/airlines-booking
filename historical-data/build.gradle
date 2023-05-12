@@ -10,8 +10,8 @@ dependencies {
     implementation libs.liquibase
     implementation libs.kafka
     annotationProcessor libs.springConfigProcessor
-    implementation libsTest.cucumberJava
-    implementation libsTest.cucumberSpring
+    implementation libs.cucumberJava
+    implementation libs.cucumberSpring
     implementation libs.feign
 
     testImplementation libsTest.springTest

@@ -21,16 +21,17 @@ ext.libs = [
         'redis'                : "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}",
         'kafka'                : "org.springframework.kafka:spring-kafka:${springBootVersion}",
         'springConfigProcessor': "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}",
-        'quartz'               : "org.springframework.boot:spring-boot-starter-quartz:${springBootVersion}"
+        'quartz'               : "org.springframework.boot:spring-boot-starter-quartz:${springBootVersion}",
+        'cucumberJava'         : "io.cucumber:cucumber-java:${cucumberVersion}",
+        'cucumberSpring'       : "io.cucumber:cucumber-spring:${cucumberVersion}"
+
 ]
 
 ext.libsTest = [
-        'springTest'    : "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
-        'assertJ'       : 'org.assertj:assertj-core:3.24.2',
-        'hamcrest'      : 'org.hamcrest:hamcrest:2.2',
-        'awaitility'    : "org.awaitility:awaitility:4.2.0",
-        'kafkaTest'     : "org.springframework.kafka:spring-kafka-test:${springBootVersion}",
-        'cucumberJava'  : "io.cucumber:cucumber-java:${cucumberVersion}",
-        'cucumberJunit' : "io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}",
-        'cucumberSpring': "io.cucumber:cucumber-spring:${cucumberVersion}"
+        'springTest'   : "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
+        'assertJ'      : 'org.assertj:assertj-core:3.24.2',
+        'hamcrest'     : 'org.hamcrest:hamcrest:2.2',
+        'awaitility'   : "org.awaitility:awaitility:4.2.0",
+        'kafkaTest'    : "org.springframework.kafka:spring-kafka-test:${springBootVersion}",
+        'cucumberJunit': "io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}"
 ]
