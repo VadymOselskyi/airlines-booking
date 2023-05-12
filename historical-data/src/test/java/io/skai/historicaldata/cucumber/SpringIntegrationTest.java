@@ -5,6 +5,7 @@ import io.skai.historicaldata.kafka.KafkaProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
 @CucumberContextConfiguration
@@ -17,6 +18,9 @@ public class SpringIntegrationTest {
 
     @Autowired
     protected JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    protected KafkaTemplate<String, Object> kafkaTemplate;
 
     @Autowired
     protected KafkaProperties kafkaProperties;
