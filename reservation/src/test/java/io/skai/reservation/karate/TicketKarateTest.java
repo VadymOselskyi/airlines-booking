@@ -25,7 +25,7 @@ public class TicketKarateTest extends SpringKarateTest {
     private final static HistoryTicketDto TICKET_DTO = createHistoryTicketDto();
 
     @BeforeAll
-    public static void setUp() {
+    public static void prepareWiremock() {
         wireMockServer.start();
         configureFor("localhost", PORT_NUMBER);
         stubFor(get(urlEqualTo("/api/tickets?email=johnsmith%40gmail.com"))
@@ -41,7 +41,7 @@ public class TicketKarateTest extends SpringKarateTest {
     }
 
     @AfterAll
-    public static void tearDown() {
+    public static void shotDownWireMock() {
         wireMockServer.stop();
     }
 
