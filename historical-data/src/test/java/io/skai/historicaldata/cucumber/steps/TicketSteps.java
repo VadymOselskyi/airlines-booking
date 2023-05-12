@@ -36,7 +36,7 @@ public class TicketSteps extends SpringIntegrationTest {
                 .isEqualTo(airportDtos);
     }
 
-    @DataTableType(replaceWithEmptyString = "[null]")
+    @DataTableType
     public HistoricalTicketDto parseToHistoricalTicketDto(Map<String, String> row) {
         return new HistoricalTicketDto(
                 verifyId(row),
