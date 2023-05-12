@@ -1,6 +1,7 @@
 def springBootVersion = '3.0.5'
 def mapstructVersion = '1.5.3.Final'
 def cucumberVersion = '7.12.0'
+def karateVersion = '1.4.0'
 
 ext.libs = [
         'springBoot'           : "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
@@ -32,5 +33,10 @@ ext.libsTest = [
         'kafkaTest'     : "org.springframework.kafka:spring-kafka-test:${springBootVersion}",
         'cucumberJunit' : "io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}",
         'cucumberJava'  : "io.cucumber:cucumber-java:${cucumberVersion}",
-        'cucumberSpring': "io.cucumber:cucumber-spring:${cucumberVersion}"
+        'cucumberSpring': "io.cucumber:cucumber-spring:${cucumberVersion}",
+        'karateCore'    : "com.intuit.karate:karate-core:${karateVersion}",
+        'karateJunit'   : "com.intuit.karate:karate-junit5:${karateVersion}",
+        'karateApache'  : "com.intuit.karate:karate-apache:0.9.6",
+        'wiremock'      : "com.github.tomakehurst:wiremock:3.0.0-beta-8",
+        'jackson'       : "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0"
 ]

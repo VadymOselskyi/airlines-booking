@@ -23,6 +23,10 @@ dependencies {
     testImplementation libsTest.assertJ
     testImplementation libsTest.hamcrest
     testImplementation libsTest.kafkaTest
+    testImplementation libsTest.karateCore
+    testImplementation libsTest.karateJunit
+    testImplementation libsTest.wiremock
+    testImplementation libsTest.jackson
 }
 buildscript {
     repositories {
@@ -33,6 +37,15 @@ buildscript {
     dependencies {
         classpath libs.jooqCodegen
         classpath libs.mysql
+    }
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
     }
 }
 
