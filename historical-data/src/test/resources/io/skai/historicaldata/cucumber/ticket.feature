@@ -1,4 +1,4 @@
-Feature: the airport can be retrieved
+Feature: send tickets to kafka and get them by email
 
   Scenario: create and retrieve
     Given create tickets
