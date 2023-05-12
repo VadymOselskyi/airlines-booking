@@ -15,4 +15,8 @@ dependencies {
     testImplementation libsTest.assertJ
     testImplementation libsTest.hamcrest
     testImplementation libsTest.awaitility
+    testImplementation libsTest.cucumberJunit
+    testImplementation libsTest.cucumberJava
+    testImplementation libsTest.cucumberSpring
+    testImplementation libs.feign
 }

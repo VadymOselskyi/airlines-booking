@@ -10,13 +10,13 @@ import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class KafkaProducerTest extends BaseApplicationContextTest {
+class HistoryTicketKafkaProducerTest extends BaseApplicationContextTest {
 
     private static final HistoryTicketDto HISTORY_TICKET_DTO = createHistoryTicketDto();
 
     @Test
     void whenProducerSendMessageThenConsumerShouldConsumeThem() throws InterruptedException {
-        kafkaProducer.sendMessage(HISTORY_TICKET_DTO);
+        historyTicketKafkaProducer.sendMessage(HISTORY_TICKET_DTO);
 
         boolean consumedMessage = testListener.getLatch().await(7, TimeUnit.SECONDS);
 

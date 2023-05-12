@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,9 @@ import java.text.ParseException;
 @ConditionalOnExpression("'${using.spring.schedulerFactory}'=='true'")
 public class QuartzConfig {
 
+    @Value("${cron.expression.every-hour}")
+    private String invokeEveryHourCronExpression;
+
     private final ApplicationContext applicationContext;
 
     @Bean
@@ -37,7 +41,7 @@ public class QuartzConfig {
     public CronTriggerFactoryBean trigger(JobDetail jobDetail) throws ParseException {
         CronTriggerFactoryBean cronTriggerFactory = new CronTriggerFactoryBean();
         cronTriggerFactory.setJobDetail(jobDetail);
-        cronTriggerFactory.setCronExpression("0 0 0/1 1/1 * ? *");
+        cronTriggerFactory.setCronExpression(invokeEveryHourCronExpression);
         cronTriggerFactory.setMisfireInstruction(SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW);
         cronTriggerFactory.afterPropertiesSet();
         return cronTriggerFactory;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class KafkaProducer {
+public class HistoryTicketKafkaProducer {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final KafkaProperties properties;
